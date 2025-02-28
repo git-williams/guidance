@@ -2512,7 +2512,8 @@ input, select, textarea {
 			input[type="button"].primary:active,
 			button.primary:active,
 			.button.primary:active {
-				background-color: #eb341c !important;
+				background-color: #000000 !important;
+				color: #ffffff !important;
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
@@ -2536,7 +2537,7 @@ input, select, textarea {
 			button,
 			.button {
 				height: 3.75em;
-				line-height: 4.5em;
+				line-height: 3.75em;
 			}
 
 		}
