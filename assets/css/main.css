@@ -2846,7 +2846,7 @@ input, select, textarea {
 			}
 
 			.wrapper.style1 header p {
-				color: #a6e0db;
+				color: #000000;
 			}
 
 			.wrapper.style1 header.major h2, .wrapper.style1 header.major h3, .wrapper.style1 header.major h4, .wrapper.style1 header.major h5, .wrapper.style1 header.major h6 {
@@ -3017,7 +3017,7 @@ input, select, textarea {
 			}
 
 			.wrapper.style3 header.major p {
-				color: #d3d4e4;
+				color: #ffffff;
 			}
 
 			.wrapper.style3 label {
@@ -3058,23 +3058,23 @@ input, select, textarea {
 			}
 
 			.wrapper.style3 ::-webkit-input-placeholder {
-				color: #b9bad4 !important;
+				color: #2b2b2e !important;
 			}
 
 			.wrapper.style3 :-moz-placeholder {
-				color: #b9bad4 !important;
+				color: #ffffff !important;
 			}
 
 			.wrapper.style3 ::-moz-placeholder {
-				color: #b9bad4 !important;
+				color: #ffffff !important;
 			}
 
 			.wrapper.style3 :-ms-input-placeholder {
-				color: #b9bad4 !important;
+				color: #ffffff !important;
 			}
 
 			.wrapper.style3 .formerize-placeholder {
-				color: #b9bad4 !important;
+				color: #ffffff !important;
 			}
 
 			.wrapper.style3 .icon.major {
