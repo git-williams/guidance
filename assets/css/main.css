@@ -1764,6 +1764,10 @@ input, select, textarea {
 		top: -0.25em;
 	}
 
+	p small {
+  	font-size: 0.8em; /* Makes the text smaller */
+	}
+
 	header h3 + p {
 		font-size: 1.1em;
 	}
