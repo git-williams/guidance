@@ -2528,7 +2528,7 @@ input, select, textarea {
 			opacity: 0.25;
 		}
 
-		@media screen and (max-width: 900px) {
+		@media screen and (max-width: 800px) {
 
 			input[type="submit"],
 			input[type="reset"],
@@ -2536,7 +2536,7 @@ input, select, textarea {
 			button,
 			.button {
 				height: 3.75em;
-				line-height: 3.75em;
+				line-height: 4em;
 			}
 
 		}
