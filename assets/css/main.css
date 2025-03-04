@@ -1767,6 +1767,9 @@ input, select, textarea {
 	p small {
   	font-size: 0.8em; /* Makes the text smaller */
 	}
+	p xsmall {
+  	font-size: 0.6em; /* Makes the text smaller */
+	}
 
 	header h3 + p {
 		font-size: 1.1em;
