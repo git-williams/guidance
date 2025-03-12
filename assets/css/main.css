@@ -87,7 +87,7 @@ input, select, textarea {
 	}
 
 	body {
-		background: #2e3842;
+		background: #0f1d28;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -1956,7 +1956,7 @@ input, select, textarea {
 
 		input[type="checkbox"]:checked + label:before,
 		input[type="radio"]:checked + label:before {
-			background: #2e3842;
+			background: #0f1d28;
 			color: #fff;
 			content: '\f00c';
 		}
@@ -2494,7 +2494,7 @@ input, select, textarea {
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #2e3842;
+			background-color: #0f1d28;
 			box-shadow: none !important;
 			color: #ffffff !important;
 			border: 2px solid #ffffff !important;
@@ -2506,7 +2506,7 @@ input, select, textarea {
 			button.primary:hover,
 			.button.primary:hover {
 				background-color: #ffffff !important;
-				color: #2e3842 !important;
+				color: #0f1d28 !important;
 				border: 2px solid #ffffff !important;
 			}
 
@@ -2515,7 +2515,7 @@ input, select, textarea {
 			input[type="button"].primary:active,
 			button.primary:active,
 			.button.primary:active {
-				background-color: #2e3842 !important;
+				background-color: #0f1d28 !important;
 				color: #ffffff !important;
 			}
 
@@ -2828,7 +2828,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style1 {
-			background-color: #2e3842;
+			background-color: #0f1d28;
 			color: #ffffff;
 		}
 
@@ -2853,7 +2853,7 @@ input, select, textarea {
 			}
 
 			.wrapper.style1 header p {
-				color: #2e3842;
+				color: #0f1d28;
 			}
 
 			.wrapper.style1 header.major h2, .wrapper.style1 header.major h3, .wrapper.style1 header.major h4, .wrapper.style1 header.major h5, .wrapper.style1 header.major h6 {
@@ -2882,7 +2882,7 @@ input, select, textarea {
 
 				.wrapper.style1 select option {
 					color: #ffffff;
-					background: #2e3842;
+					background: #0f1d28;
 				}
 
 			.wrapper.style1 input[type="checkbox"] + label,
@@ -2898,7 +2898,7 @@ input, select, textarea {
 			.wrapper.style1 input[type="checkbox"]:checked + label:before,
 			.wrapper.style1 input[type="radio"]:checked + label:before {
 				background: #ffffff;
-				color: #2e3842;
+				color: #0f1d28;
 			}
 
 			.wrapper.style1 ::-webkit-input-placeholder {
@@ -2987,11 +2987,11 @@ input, select, textarea {
 			}
 
 		.wrapper.style2 {
-			background-color: #2e3842;
+			background-color: #0f1d28;
 		}
 
 		.wrapper.style3 {
-			background-color: #2e3842;
+			background-color: #0f1d28;
 			color: #ffffff;
 		}
 
@@ -3045,7 +3045,7 @@ input, select, textarea {
 
 				.wrapper.style3 select option {
 					color: #ffffff;
-					background: #2e3842;
+					background: #0f1d28;
 				}
 
 			.wrapper.style3 input[type="checkbox"] + label,
@@ -3061,7 +3061,7 @@ input, select, textarea {
 			.wrapper.style3 input[type="checkbox"]:checked + label:before,
 			.wrapper.style3 input[type="radio"]:checked + label:before {
 				background: #ffffff;
-				color: #2e3842;
+				color: #0f1d28;
 			}
 
 			.wrapper.style3 ::-webkit-input-placeholder {
@@ -3155,15 +3155,15 @@ input, select, textarea {
 
 		.wrapper.style5 {
 			background-color: #ffffff;
-			color: #2e3842;
+			color: #0f1d28;
 		}
 
 			.wrapper.style5 strong, .wrapper.style5 b {
-				color: #2e3842;
+				color: #0f1d28;
 			}
 
 			.wrapper.style5 h2, .wrapper.style5 h3, .wrapper.style5 h4, .wrapper.style5 h5, .wrapper.style5 h6 {
-				color: #2e3842;
+				color: #0f1d28;
 			}
 
 			.wrapper.style5 hr {
@@ -3179,7 +3179,7 @@ input, select, textarea {
 			}
 
 			.wrapper.style5 header p {
-				color: #2e3842;
+				color: #0f1d28;
 			}
 
 			.wrapper.style5 header.major h2, .wrapper.style5 header.major h3, .wrapper.style5 header.major h4, .wrapper.style5 header.major h5, .wrapper.style5 header.major h6 {
@@ -3191,7 +3191,7 @@ input, select, textarea {
 			}
 
 			.wrapper.style5 label {
-				color: #2e3842;
+				color: #0f1d28;
 			}
 
 			.wrapper.style5 input[type="text"],
@@ -3207,7 +3207,7 @@ input, select, textarea {
 			}
 
 				.wrapper.style5 select option {
-					color: #2e3842;
+					color: #0f1d28;
 					background: #ffffff;
 				}
 
@@ -3223,7 +3223,7 @@ input, select, textarea {
 
 			.wrapper.style5 input[type="checkbox"]:checked + label:before,
 			.wrapper.style5 input[type="radio"]:checked + label:before {
-				background: #2e3842;
+				background: #0f1d28;
 				color: #ffffff;
 			}
 
@@ -3264,7 +3264,7 @@ input, select, textarea {
 				}
 
 			.wrapper.style5 table th {
-				color: #2e3842;
+				color: #0f1d28;
 			}
 
 			.wrapper.style5 table thead {
@@ -3285,7 +3285,7 @@ input, select, textarea {
 			.wrapper.style5 button,
 			.wrapper.style5 .button {
 				box-shadow: inset 0 0 0 2px #ffffff;
-				color: #2e3842;
+				color: #0f1d28;
 			}
 
 				.wrapper.style5 input[type="submit"]:hover,
@@ -3362,7 +3362,7 @@ input, select, textarea {
 		-ms-transition: -ms-transform 0.5s ease;
 		transition: transform 0.5s ease;
 		-webkit-overflow-scrolling: touch;
-		background: #2e3842;
+		background: #0f1d28;
 		color: #ffffff;
 		height: 100%;
 		max-width: 80%;
@@ -3436,7 +3436,7 @@ input, select, textarea {
 
 	body.is-menu-visible #page-wrapper {
 		opacity: 0.5;
-		background-color: #2e3842;
+		background-color: #0f1d28;
 	}
 
 		body.is-menu-visible #page-wrapper:before {
@@ -3457,7 +3457,7 @@ input, select, textarea {
 		-webkit-transition: background-color 0.2s ease;
 		-ms-transition: background-color 0.2s ease;
 		transition: background-color 0.2s ease;
-		background: #2e3842;
+		background: #0f1d28;
 		height: 3em;
 		left: 0;
 		line-height: 3em;
@@ -3706,7 +3706,7 @@ input, select, textarea {
 			-ms-transition-delay: 1.25s;
 			transition-delay: 1.25s;
 			content: '';
-			background: #2e3842;
+			background: #0f1d28;
 			display: block;
 			width: 100%;
 			height: 100%;
@@ -3898,7 +3898,7 @@ input, select, textarea {
 
 	#footer {
 		padding: 6em 0 4em 0 ;
-		background-color: #2e3842;
+		background-color: #0f1d28;
 		text-align: center;
 	}
 
@@ -3988,7 +3988,7 @@ input, select, textarea {
 	}
 
 	body.landing #footer {
-		background-color: rgba(0, 0, 0);
+		background-color: #0f1d28;
 	}
 
 	body.is-mobile.landing #page-wrapper {
@@ -4007,5 +4007,5 @@ input, select, textarea {
 	}
 
 	body.is-mobile.landing #footer {
-		background-color: #2e3842;
+		background-color: #0f1d28;
 	}
