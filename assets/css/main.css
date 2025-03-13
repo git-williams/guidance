@@ -2144,8 +2144,11 @@ input, select, textarea {
     width: 100%;
     text-align: center;
     display: block;
-    margin: 0 auto; /* Ensures block elements are centered */
-	bottom:-40px;
+    margin: 0 auto; /* Keeps it centered */
+    position: relative; /* Allows fine-tuning */
+    bottom: -20px; /* Moves text slightly down, adjust as needed */
+    font-size: 22px; /* Reduce text size slightly for better fit */
+    padding-top: 10px; /* Adds a little space above */
 }
 .midup {
     width: 100%;
