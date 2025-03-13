@@ -2340,6 +2340,9 @@ input, select, textarea {
 /* Table */
 .text-container{
 	width:400px;
+	max-width: 300px; /* Adjust width to keep text contained */
+    text-align: center; /* Keeps it centered */
+    word-wrap: break-word; /* Prevents overflow */
 }
 
 	.table-wrapper {
