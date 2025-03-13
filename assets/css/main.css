@@ -2097,8 +2097,12 @@ input, select, textarea {
 		}
 		.abc{
 			background-color:#091219;
-			border-radius: 10px;
+			border-radius: 3px;
 			border: 0;
+			max-width:500px;
+			min-width:500px;
+			max-height:250px;
+			min-height:250px;
 		}
 
 /* Image */
