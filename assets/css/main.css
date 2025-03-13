@@ -2145,6 +2145,14 @@ input, select, textarea {
     text-align: center;
     display: block;
     margin: 0 auto; /* Ensures block elements are centered */
+	bottom:-40px;
+}
+.midup {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin: 0 auto; /* Ensures block elements are centered */
+    top:-40px;
 }
 /* List */
 
