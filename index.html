@@ -115,10 +115,11 @@ Even when the climb seems impossibly high or the fall impossibly far, change is 
 	background-color:#091219;
 		border-radius: 3px;
 			border: 0;
-			max-width:500px;
-			min-width:500px;
-			max-height:250px;
-			min-height:250px;
+			width: min(90%, 600px); /* Responsive width */
+   			 height: auto; /* Adjust based on content */
+  			  min-width: 300px; /* Ensures it doesn't shrink too much */
+  			  min-height: 200px; /* Ensures it doesn't get too short */
+   			 margin: 0 auto; /* Centers the div horizontally */
         }
 
         .profile {
