@@ -2339,8 +2339,8 @@ input, select, textarea {
 
 /* Table */
 .text-container{
-	width:600px;
-	max-width: 600px; /* Adjust width to keep text contained */
+	width:700px;
+	max-width: 700px; /* Adjust width to keep text contained */
     text-align: center; /* Keeps it centered */
     word-wrap: break-word; /* Prevents overflow */
 }
