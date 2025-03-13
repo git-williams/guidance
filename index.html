@@ -125,16 +125,19 @@ Even when the climb seems impossibly high or the fall impossibly far, change is 
         }
 
         .profile img {
+		display: flex;
+    flex-direction: column;
+    gap: 20px;
             width: 100px; /* Adjust size */
             height: 100px;
             border-radius: 50%; /* Makes it circular */
             object-fit: cover;
-		margin: 25px;
-        .button {
+	}
+      /*  .button {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Adjust this value to control the vertical spacing */
-}
+    gap: 20px;
+}*/
     </style>
 </head>
 <body>
@@ -142,7 +145,7 @@ Even when the climb seems impossibly high or the fall impossibly far, change is 
 <section id="learn" class="wrapper style6 profile-section">
     <!-- Profile Image + Name -->
     <div class="profile">
-        <img src="cat.png" alt="pfp">
+        <img src="images/Copy of Untitled (7).png" alt="pfp">
         <h2>Guidance, join today</h2>
     </div>
 
