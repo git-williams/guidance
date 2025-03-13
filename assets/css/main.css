@@ -2546,27 +2546,6 @@ input, select, textarea {
 			}
 
 		}
-.button::after {
-    content: "Email"; /* Custom hover text */
-    position: absolute;
-    bottom: 100%; /* Puts the text above the button */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: black;
-    color: white;
-    padding: 5px 10px;
-    font-size: 12px;
-    white-space: nowrap;
-    border-radius: 5px;
-    opacity: 0; /* Initially hidden */
-    pointer-events: none; /* Prevents interaction */
-    transition: opacity 0.2s ease-in-out;
-}
-
-/* Show tooltip on hover */
-.button:hover::after {
-    opacity: 1;
-}
 
 /* Features */
 
