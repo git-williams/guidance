@@ -2140,7 +2140,12 @@ input, select, textarea {
 			.image.fit img {
 				width: 100%;
 			}
-
+.mid {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin: 0 auto; /* Ensures block elements are centered */
+}
 /* List */
 
 	ol {
