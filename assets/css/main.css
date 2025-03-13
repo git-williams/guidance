@@ -2146,7 +2146,7 @@ input, select, textarea {
     display: block;
     margin: 0 auto; /* Keeps it centered */
     position: relative; /* Allows fine-tuning */
-    bottom: -40px; /* Moves text slightly down, adjust as needed */
+    bottom: -50px; /* Moves text slightly down, adjust as needed */
     font-size: 22px; /* Reduce text size slightly for better fit */
     padding-top: 10px; /* Adds a little space above */
 }
@@ -2156,7 +2156,7 @@ input, select, textarea {
     display: block;
     margin: 0 auto; /* Ensures block elements are centered */
     position: relative; /* Allows fine-tuning */
-    bottom: 40px; /* Moves text slightly down, adjust as needed */
+    bottom: 50px; /* Moves text slightly down, adjust as needed */
     padding-top: 10px; /* Adds a little space above */
 }
 /* List */
