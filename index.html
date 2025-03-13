@@ -117,7 +117,7 @@ Even when the climb seems impossibly high or the fall impossibly far, change is 
             display: flex;
             justify-content: center; /* Centers everything horizontally */
             align-items: center; /* Centers elements vertically */
-            gap: 20px; /* Space between image and buttons */
+            gap: 40px; /* Space between image and buttons */
         }
 
         .profile {
@@ -129,13 +129,16 @@ Even when the climb seems impossibly high or the fall impossibly far, change is 
             height: 100px;
             border-radius: 50%; /* Makes it circular */
             object-fit: cover;
-		margin: 15px;
+		margin: 25px;
+        }
+					.buttons button {
+            top:20px;
         }
     </style>
 </head>
 <body>
 
-<section id="learn" class="wrapper style6">
+<section id="learn" class="wrapper style6 profile-section">
     <!-- Profile Image + Name -->
     <div class="profile">
         <img src="cat.png" alt="pfp">
