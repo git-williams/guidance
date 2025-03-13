@@ -4018,7 +4018,9 @@ input, select, textarea {
 
 /* Bottom Style6 */
 
-	.wrapper.style6 {
+
+body.is-mobile.landing #learn,
+	body.is-mobile.landing .wrapper.style6 {
 		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/meow.png");
 		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/meow.png");
 		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/meow.png");
