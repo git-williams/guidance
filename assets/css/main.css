@@ -2104,8 +2104,7 @@ input, select, textarea {
 		border: 0;
 		display: inline-block;
 		position: relative;
-		top:50px;
-		bottom:-100px;
+		top:75px;
 	}
 
 		.image img {
