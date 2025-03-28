@@ -2359,7 +2359,7 @@ input, select, textarea {
 /* Table */
 .text-container{
 	width:675px;
-	max-width: 775px; /* Adjust width to keep text contained */
+	max-width: 805px; /* Adjust width to keep text contained */
     text-align: center; /* Keeps it centered */
     word-wrap: break-word; /* Prevents overflow */
 }
