@@ -2529,7 +2529,8 @@ input, select, textarea {
 			background-color: #1d2f37;
 			box-shadow: none !important;
 			color: #ffffff !important;
-			border: 2px solid #ffffff !important;
+			border: 1px solid #ffffff !important;
+			border-radius: 8px !important;
 		}
 
 			input[type="submit"].primary:hover,
