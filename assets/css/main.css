@@ -2532,6 +2532,14 @@ input, select, textarea {
 			border: 1px solid #ffffff !important;
 			border-radius: 5px !important;
 		}
+		.button.header {
+			background-color: #1d2f37;
+			width: 200px !important;
+			box-shadow: none !important;
+			color: #ffffff !important;
+			border: 1px solid #ffffff !important;
+			border-radius: 5px !important;
+		}
 
 			input[type="submit"].primary:hover,
 			input[type="reset"].primary:hover,
