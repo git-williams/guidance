@@ -2530,7 +2530,7 @@ input, select, textarea {
 			box-shadow: none !important;
 			color: #ffffff !important;
 			border: 1px solid #ffffff !important;
-			border-radius: 8px !important;
+			border-radius: 5px !important;
 		}
 
 			input[type="submit"].primary:hover,
