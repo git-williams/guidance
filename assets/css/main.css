@@ -2458,10 +2458,10 @@ input, select, textarea {
 		display: inline-block;
 		font-size: 0.8em;
 		font-weight: 600;
-			height: 4em;
+			height: 3.125em;
 		letter-spacing: 0.225em;
 		line-height: 3.125em;
-			max-width: 50em;
+			max-width: 30em;
 		padding: 0 2.75em;
 		text-align: center;
 		text-decoration: none;
