@@ -86,13 +86,47 @@
       </div>
     </div>
 
-    <!-- Right: Enlarged Image -->
+    <!-- Right: Larger, Responsive Image -->
     <div style="flex: 0 0 33.33%; max-width: 33.33%; text-align: center; padding-left: 20px; box-sizing: border-box;">
-      <img src="images/icon.png" alt="Newsletter Icon" style="max-width: 400%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+      <img src="images/icon.png" alt="Newsletter Icon" style="width: 300px; max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
     </div>
 
   </div>
 </section>
+
+<!-- Responsive Support -->
+<style>
+  @media (max-width: 768px) {
+    section img {
+      width: 180px !important;
+    }
+
+    section h2 {
+      font-size: 22px !important;
+    }
+
+    section p {
+      font-size: 14px !important;
+    }
+
+    section a {
+      padding: 12px 20px !important;
+      font-size: 14px !important;
+    }
+
+    section div[style*="flex: 0 0 66.66%"] {
+      max-width: 100% !important;
+      padding-right: 0 !important;
+    }
+
+    section div[style*="flex: 0 0 33.33%"] {
+      max-width: 100% !important;
+      margin-top: 30px;
+      padding-left: 0 !important;
+    }
+  }
+</style>
+
 
 
 
