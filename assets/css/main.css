@@ -2504,9 +2504,14 @@ input, select, textarea {
 		.button.fit {
 			width: 100%;
 		}
-button.fit2 {
-			width: 200px !important;
+input[type="submit"].fit2,
+		input[type="reset"].fit2,
+		input[type="button"].fit2,
+		button.fit2,
+		.button.fit2 {
+			width: 200px;
 		}
+
 
 		input[type="submit"].small,
 		input[type="reset"].small,
