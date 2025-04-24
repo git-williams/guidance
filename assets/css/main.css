@@ -2461,7 +2461,7 @@ input, select, textarea {
 			height: 3.125em;
 		letter-spacing: 0.225em;
 		line-height: 3.125em;
-			/*max-width: 30em;*/
+			max-width: 30em;
 		padding: 0 2.75em;
 		text-align: center;
 		text-decoration: none;
@@ -2504,6 +2504,9 @@ input, select, textarea {
 		.button.fit {
 			width: 100%;
 		}
+button.fit2 {
+			width: 200px !important;
+		}
 
 		input[type="submit"].small,
 		input[type="reset"].small,
@@ -2529,7 +2532,6 @@ input, select, textarea {
 			background-color: #1d2f37;
 			box-shadow: none !important;
 			color: #ffffff !important;
-			width:30em !important;
 			border: 1px solid #ffffff !important;
 			border-radius: 5px !important;
 		}
