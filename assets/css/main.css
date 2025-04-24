@@ -2534,14 +2534,14 @@ input[type="submit"].fit2,
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #1d2f37;
+			background-color: #0d1b26;
 			box-shadow: none !important;
 			color: #ffffff !important;
 			border: 1px solid #ffffff !important;
 			border-radius: 5px !important;
 		}
 		.button.header {
-			background-color: #1d2f37;
+			background-color: #0d1b26;
 			width: 200px !important;
 			box-shadow: none !important;
 			color: #ffffff !important;
@@ -2877,11 +2877,11 @@ input[type="submit"].fit2,
 		}
 
 		.wrapper.style1 {
-			background-color: #0d1b26;
+			background-color: #0d1b26 !important;
 			color: #ffffff;
 		}
 		.wrapper.style2bj {
-			background-color: #0d1b26;
+			background-color: #0d1b26 !important;;
 			color: #ffffff;
 		}
 
@@ -3063,7 +3063,7 @@ input[type="submit"].fit2,
 
 
 .wrapper.style2bj {
-			background-color: #0c1821;
+			background-color: #0d1b26;
 			color: #ffffff;
 		}
 
