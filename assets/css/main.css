@@ -2537,7 +2537,7 @@ input[type="submit"].fit2,
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #172229;
+			background-color: #091219;
 			box-shadow: none !important;
 			color: #ffffff !important;
 			border: 1px solid #ffffff !important;
@@ -2558,7 +2558,7 @@ input[type="submit"].fit2,
 			button.primary:hover,
 			.button.primary:hover {
 				background-color: #ffffff !important;
-				color: #1d2f37 !important;
+				color: #091219 !important;
 				border: 2px solid #ffffff !important;
 			}
 
@@ -2567,7 +2567,7 @@ input[type="submit"].fit2,
 			input[type="button"].primary:active,
 			button.primary:active,
 			.button.primary:active {
-				background-color: #1d2f37 !important;
+				background-color: #091219 !important;
 				color: #ffffff !important;
 			}
 
