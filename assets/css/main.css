@@ -44,6 +44,9 @@ ol, ul {
 blockquote, q {
 	quotes: none;
 }
+img[src$=".svg"] {
+  filter: invert(1) brightness(2);
+}
 
 	blockquote:before, blockquote:after, q:before, q:after {
 		content: '';
