@@ -50,6 +50,7 @@ img[src$=".svg"] {
 }
 img.no-invert {
   filter: none;
+	border:none;
 }
 
 	blockquote:before, blockquote:after, q:before, q:after {
