@@ -46,6 +46,7 @@ blockquote, q {
 }
 img[src$=".svg"] {
   filter: invert(1) brightness(2);
+	border: 2px solid #ffffff;
 }
 
 	blockquote:before, blockquote:after, q:before, q:after {
