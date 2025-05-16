@@ -1,0 +1,27 @@
+{
+  "name": "guidance",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.7.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/git-williams/guidance.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/git-williams/guidance/issues"
+  },
+  "homepage": "https://github.com/git-williams/guidance#readme"
+}
+
+
