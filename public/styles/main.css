@@ -2667,7 +2667,7 @@ input[type="submit"].fit2,
 			}
 
 			.features li:nth-child(10) {
-				background-color: #091219);
+				background-color: #091219;
 			}
 
 			.features li:before {
@@ -3665,7 +3665,7 @@ input[type="submit"].fit2,
 			position: absolute;
 			right: 0;
 			top: 0;
-			vertical-align: middle;
+			/*vertical-align: middle;*/
 			width: 7em;
 		}
 
