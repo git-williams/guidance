@@ -1,0 +1,71 @@
+---
+// src/components/Header.astro
+import { useState } from 'react';
+---
+<header class="site-header">
+  <div class="header-content">
+    <a href="/" class="logo">GUIDANCE</a>
+    <nav class="desktop-nav">
+      <a href="#one">Home</a>
+      <a href="#two">Content</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="hamburger" id="menu-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#one">Home</a>
+    <a href="#two">Content</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="overlay" id="overlay"></div>
+</header>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('overlay');
+
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active'); // hamburger animation toggle
+      menu.classList.toggle('open');
+      overlay.classList.toggle('visible');
+    });
+
+    overlay.addEventListener('click', () => {
+      toggle.classList.remove('active');
+      menu.classList.remove('open');
+      overlay.classList.remove('visible');
+    });
+  });
+</script>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('.site-header');
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+    if (isMobile) {
+      if (window.scrollY > 100) {
+        header.classList.add('visible');
+      } else {
+        header.classList.remove('visible');
+      }
+    } else {
+      // On desktop, ensure header is always visible
+      header.classList.add('visible');
+    }
+  });
+
+  // Also run on initial load to set correct state
+  window.addEventListener('load', () => {
+    const header = document.querySelector('.site-header');
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!isMobile) {
+      header.classList.add('visible');
+    }
+  });
+</script>

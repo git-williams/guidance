@@ -1,0 +1,123 @@
+---
+// src/components/Newsletter.astro
+---
+<section class="newsletter-section">
+  <div class="newsletter-container">
+    <div class="newsletter-left">
+      <h1 class="newsletter-title">Find Beauty in<br />
+      the Details</h1>
+      <p class="newsletter-description">
+        Subscribe for rare insights, original ideas, and distilled content. No fluff. Just the signal.
+      </p>
+
+      <!-- Bottom Navigation Buttons -->
+      <div class="newsletter-buttons">
+  <a href="/about" class="newsletter-link-button">Read the Blog</a>
+  <a href="/blog" class="newsletter-link-button">Contact Me</a>
+  <a href="/resources" class="newsletter-link-button">Learn More</a>
+</div>
+
+    </div>
+    <div class="newsletter-right">
+      <form id="newsletterForm" class="newsletter-form" novalidate>
+        <div class="success-message-container">
+          <p class="form-message" id="formMessage" aria-live="polite" role="alert"></p>
+        </div>
+        <input type="email" id="emailInput" placeholder="Enter your email" data-placeholder-mobile="Email" required />
+        <button type="submit" class="submit-button">Start Reading</button>
+        <input type="text" name="website" id="website" style="display:none" tabindex="-1" autocomplete="off" />
+      </form>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    document.body.classList.add('no-hover');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('newsletterForm');
+  const input = document.getElementById('emailInput');
+  const message = document.getElementById('formMessage');
+  const honeypot = document.getElementById('website');
+
+  function showMessage(text, color) {
+    message.textContent = text;
+    message.style.color = color;
+
+    message.classList.remove('show', 'hide');
+    void message.offsetWidth;
+    message.classList.add('show');
+
+    setTimeout(() => {
+      message.classList.remove('show');
+      message.classList.add('hide');
+    }, 3000);
+
+    setTimeout(() => {
+      message.classList.remove('hide');
+      message.textContent = '';
+    }, 3400);
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (honeypot.value !== '') {
+      // Bot detected: ignore submission
+      return;
+    }
+
+    const email = input.value.trim();
+
+
+if (email === '') {
+    showMessage('Email is required.', '#ff6666');
+    return;
+  }
+
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+    if (!emailRegex.test(email)) {
+      showMessage('Please enter a valid email.', '#ff6666');
+      return;
+    }
+
+    try {
+      const res = await fetch('https://formspree.io/f/mgvkqowp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (res.ok) {
+        showMessage("Thanks! You're on the list.", '#66ff99');
+        input.value = '';
+      } else {
+        showMessage('Something went wrong. Please try again.', '#ff6666');
+      }
+    } catch (err) {
+      showMessage('Network error. Try again later.', '#ff6666');
+    }
+  });
+});
+
+</script>
+<script>
+  function updatePlaceholder() {
+    const input = document.querySelector('.newsletter-input');
+    if (window.innerWidth <= 768) {
+      input.placeholder = 'Email';
+    } else {
+      input.placeholder = 'Enter your email';
+    }
+  }
+
+  // Run on load and on resize
+  window.addEventListener('load', updatePlaceholder);
+  window.addEventListener('resize', updatePlaceholder);
+</script>
+

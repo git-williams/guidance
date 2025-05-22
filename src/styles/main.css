@@ -1,0 +1,677 @@
+/* ==========================================================================
+   ============================== IMPORTS ===================================
+   ========================================================================== */
+
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+/* ==========================================================================
+   ============================== RESET =====================================
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+body, html {
+  font-family: sans-serif;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+/* Disable hover styles completely if .no-hover is set */
+.no-hover .newsletter-form input[type="email"]:hover,
+.no-hover .newsletter-form .submit-button:hover,
+.no-hover .newsletter-link-button:hover,
+.no-hover .newsletter-link-button:first-child:hover {
+  pointer-events: none;
+  background: inherit;
+  border-color: inherit;
+  transform: none;
+}
+
+/* Fixes for buttons and links active states */
+a, button {
+  transition: transform 0.1s ease;
+}
+
+input, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}
+a:active,
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus {
+  outline: none;
+  background-color: inherit;
+}
+
+/* ==========================================================================
+   ============================== BACKGROUND =================================
+   ========================================================================== */
+
+.background {
+  background-image: url('/images/BOOM.png');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* ==========================================================================
+   ============================== MAIN SECTIONS =============================
+   ========================================================================== */
+
+main > section {
+  min-height: 100vh;
+  padding: 5rem 2rem;
+  color: white;
+  backdrop-filter: brightness(0.7);
+}
+
+/* ==========================================================================
+   ============================== FOOTER ====================================
+   ========================================================================== */
+
+.site-footer {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  text-align: center;
+  color: white;
+  background-color: #111;
+  padding: 4rem 1rem;
+  height: 200px;
+}
+
+.icon-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-icon {
+  width: 24px;
+  height: 24px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.footer-icon:hover {
+  filter: grayscale(0%) brightness(1.3);
+}
+
+.footer-text {
+  color: white;
+  font-size: 0.9rem;
+}
+
+.footer-text a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.footer-text a:hover {
+  color: #ffffffcc;
+}
+
+.footer-text a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: #ffffffcc;
+  transition: width 0.3s ease;
+}
+
+.footer-text a:hover::after {
+  width: 100%;
+}
+
+/* Shared styling for all nav/footer links */
+.desktop-nav a,
+.footer-text a,
+.icon-links a {
+  transition: color 0.3s ease;
+  color: white;
+  text-decoration: none;
+}
+
+.desktop-nav a:hover,
+.footer-text a:hover,
+.icon-links a:hover {
+  color: #ffffffcc;
+  filter: brightness(1.3);
+}
+
+/* ==========================================================================
+   ============================== NEWSLETTER SECTION ========================
+   ========================================================================== */
+
+.newsletter-section {
+  background: #111; /* dark background */
+  padding-top: clamp(12rem, 25vh, 16rem);
+  padding-bottom: clamp(4rem, 8vh, 6rem);
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 100%;
+}
+
+.newsletter-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.newsletter-left {
+  flex: 1;
+  min-width: 250px;
+  width: 100%;
+  margin-bottom: -1.5rem;
+}
+
+.newsletter-right {
+  flex: 1.2;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+  margin-bottom: -1.5rem;
+}
+
+.newsletter-title {
+  color: white;
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.newsletter-description {
+  color: #ccc;
+  font-size: 1.25rem;
+  max-width: 500px;
+
+}
+
+.newsletter-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.newsletter-form input[type="email"] {
+  width: 100%;
+  max-width: clamp(300px, 50vw, 600px);
+  height: 56px;
+  padding: 0 1.2rem;
+  border: 1px solid #333;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  background: #000;
+  color: white;
+  transition: border-color 0.3s ease;
+  margin: 0 auto; /* centers it */
+  display: block; /* ensures block centering */
+}
+
+.newsletter-form input[type="email"]::placeholder {
+  color: #888;
+}
+
+@keyframes inputClickPulse {
+  0%   { border-color: #ff3333; }
+  50%  { border-color: #333; }
+  100% { border-color: #ff3333; }
+}
+
+.newsletter-form .submit-button {
+  margin-top: 1rem;
+  width: 100%;
+  height: 48px;
+  background: #ff3333;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.newsletter-form .submit-button:hover {
+  background: #ff5555;
+  transform: translateY(-1px);
+}
+
+.newsletter-form .submit-button:active {
+  transform: scale(0.98);
+}
+
+.newsletter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap; /* allow stacking when needed */
+}
+
+.newsletter-link-button {
+  width: 120px; /* fixed size */
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  background: #ff3333;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.newsletter-link-button:active {
+  transform: scale(0.98);
+}
+
+/* NEWSLETTER HOVER RULES DESKTOP */
+@media (hover: hover) and (pointer: fine) {
+  .newsletter-form input[type="email"]:hover {
+    border-color: #ff3333;
+  }
+
+  .newsletter-form .submit-button:hover {
+    background: #ff5555;
+    transform: translateY(-1px);
+  }
+
+  .newsletter-link-button:hover {
+    background: #ff5555;
+    transform: translateY(-1px);
+  }
+
+  .newsletter-link-button:first-child:hover {
+    background: #e04444;
+  }
+}
+
+/* Click pulse: red → default → red (bounced visually) */
+.newsletter-form input[type="email"]:focus {
+  outline: none;
+  animation: inputClickPulse 0.1s ease;
+  border-color: #ff3333;
+}
+
+/* TOUCH/HOVER STYLES MOBILE */
+@media (hover: none) and (pointer: coarse) {
+  .newsletter-form input[type="email"]:active,
+  .newsletter-form input[type="email"]:focus {
+    border-color: #ff3333 !important;
+    background-color: #000000 !important;
+    outline: none !important;
+  }
+
+  .newsletter-form .submit-button:active,
+  .newsletter-form .submit-button:focus {
+    background-color: #ff5555 !important;
+    transform: scale(0.98);
+    outline: none !important;
+  }
+}
+
+
+
+/* Leftmost button: make it a bit wider + different hover */
+.newsletter-link-button:first-child {
+  width: 140px; /* wider than the others */
+  background: #cc2222; /* slightly darker base */
+}
+
+.newsletter-link-button:first-child:hover {
+  background: #e04444; /* standout highlight */
+}
+
+/* Tablet view: stack left-aligned */
+@media screen and (max-width: 1200px) {
+  .newsletter-buttons {
+    flex-direction: column;
+    align-items: flex-start; /* left-align */
+    padding-left: 1rem; /* optional left padding */
+  }
+  .newsletter-link-button {
+    width: 180px;
+  }
+  .newsletter-link-button:first-child {
+    width: 220px;
+  }
+}
+
+/* Mobile responsive rules */
+@media screen and (max-width: 768px) {
+
+  .newsletter-buttons {
+    display: none;
+  }
+
+  .newsletter-right {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .newsletter-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .newsletter-form input[type="email"],
+  .newsletter-form button[type="submit"] {
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .newsletter-form input[type="email"] {
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-input::placeholder {
+    content: attr(data-placeholder-mobile);
+  }
+
+  .newsletter-title {
+    font-size: 2rem;
+  }
+
+  .newsletter-description {
+    font-size: 1rem;
+  }
+}
+
+/* Success / error message container */
+.success-message-container {
+  height: 40px; /* Adjust as needed to fit message size */
+  position: relative;
+  overflow: visible;
+}
+
+.form-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  color: #66ff99; /* success green */
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation-fill-mode: forwards;
+  pointer-events: none;
+}
+
+/* Slide + fade in */
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide + fade out */
+@keyframes slideFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.form-message.show {
+  animation: slideFadeIn 0.4s ease forwards;
+}
+
+.form-message.hide {
+  animation: slideFadeOut 0.4s ease forwards;
+}
+
+/* ==========================================================================
+   ============================== HEADER ====================================
+   ========================================================================== */
+
+/* HEADER: Fixed position, hidden initially, visible on scroll */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 999;
+  border-bottom: none; /* will add in desktop */
+}
+.site-header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Desktop always visible with bottom border */
+@media screen and (min-width: 769px) {
+  .site-header {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    border-bottom: 1px solid #111;
+  }
+}
+
+/* Header Content Layout */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  gap: 1rem;
+  overflow-x: hidden;
+  height: 64px;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+}
+
+/* Logo */
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
+  transition: filter 0.3s ease;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+.logo:hover {
+  filter: brightness(1.3);
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  display: flex;
+  gap: 3.5rem;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+}
+.desktop-nav a {
+  color: white;
+  margin-left: 0.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+.desktop-nav a:hover {
+  color: #ffffffcc;
+  filter: brightness(1.3);
+}
+
+/* Hamburger Button */
+.hamburger {
+  display: none; /* default hidden on desktop */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0.5rem;
+  margin-left: auto;
+  z-index: 1002;
+}
+.hamburger span {
+  display: block;
+  width: 27px;
+  height: 2px;
+  border-radius: 999px;
+  background-color: white;
+  margin: 2px 0;
+  transition: all 0.4s ease;
+  transform-origin: center;
+}
+
+/* Mobile Navigation Menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  width: 70%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 1rem 2rem 1rem;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  z-index: 1001;
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+.mobile-menu a {
+  color: white;
+  font-weight: 600;
+  font-size: 1.3rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-bottom: 0.7rem;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.3s ease;
+}
+.mobile-menu a:hover {
+  background-color: #ff3333;
+}
+
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: none;
+}
+
+.overlay.visible {
+  display: block;
+}
+
+/* Mobile menu toggle hamburger animation (optional) */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(11px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(10px, -5px);
+}
+
+/* Show hamburger on mobile */
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .desktop-nav {
+    display: none;
+  }
+  .header-content {
+    padding: 0.5rem 1rem;
+    height: 48px;
+  }
+}
+
+/* ==========================================================================
+   ============================== MISC UTILITIES ===========================
+   ========================================================================== */
+
+/* Visually hidden for screen readers */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Centered Flexbox utility */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================================================
+   ============================== END =======================================
+   ========================================================================== */
