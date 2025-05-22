@@ -21,9 +21,9 @@
     <div class="newsletter-right">
       <form id="newsletterForm" class="newsletter-form" novalidate>
         <div class="success-message-container">
-          <p class="form-message" id="formMessage" aria-live="polite" role="alert"></p>
+          <p class="form-message" id="formMessage" aria-live="polite" aria-atomic="true" role="alert"></p>
         </div>
-        <input type="email" id="emailInput" placeholder="Enter your email" data-placeholder-mobile="Email" required />
+        <input type="email" id="emailInput" placeholder="Enter your email" autocomplete="email" required />
         <button type="submit" class="submit-button">Start Reading</button>
         <input type="text" name="website" id="website" style="display:none" tabindex="-1" autocomplete="off" />
       </form>
@@ -108,7 +108,7 @@ if (email === '') {
 </script>
 <script>
   function updatePlaceholder() {
-    const input = document.querySelector('.newsletter-input');
+    const input = document.querySelector('#emailInput');
     if (window.innerWidth <= 768) {
       input.placeholder = 'Email';
     } else {
