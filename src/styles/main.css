@@ -165,8 +165,19 @@ main > section {
    ============================== NEWSLETTER SECTION ========================
    ========================================================================== */
 
+/* Disable hover styles completely if .no-hover is set */
+.no-hover .newsletter-form input[type="email"]:hover,
+.no-hover .newsletter-form .submit-button:hover,
+.no-hover .newsletter-link-button:hover,
+.no-hover .newsletter-link-button:first-child:hover {
+  pointer-events: none;
+  background: inherit;
+  border-color: inherit;
+  transform: none;
+}
+
 .newsletter-section {
-  background: #111; /* dark background */
+  background: #111;
   padding-top: clamp(12rem, 25vh, 16rem);
   padding-bottom: clamp(4rem, 8vh, 6rem);
   padding-left: 2rem;
@@ -196,7 +207,6 @@ main > section {
   flex: 1.2;
   display: flex;
   justify-content: flex-end;
-  padding-right: 0;
   align-items: center;
   max-width: 500px;
   width: 100%;
@@ -214,7 +224,6 @@ main > section {
   color: #ccc;
   font-size: 1.25rem;
   max-width: 500px;
-
 }
 
 .newsletter-form {
@@ -235,8 +244,8 @@ main > section {
   background: #000;
   color: white;
   transition: border-color 0.3s ease;
-  margin: 0 auto; /* centers it */
-  display: block; /* ensures block centering */
+  margin: 0 auto;
+  display: block;
 }
 
 .newsletter-form input[type="email"]::placeholder {
@@ -278,11 +287,11 @@ main > section {
   justify-content: center;
   gap: 1rem;
   margin-top: 2rem;
-  flex-wrap: wrap; /* allow stacking when needed */
+  flex-wrap: wrap;
 }
 
 .newsletter-link-button {
-  width: 120px; /* fixed size */
+  width: 120px;
   height: 40px;
   text-align: center;
   line-height: 40px;
@@ -300,7 +309,6 @@ main > section {
   transform: scale(0.98);
 }
 
-/* NEWSLETTER HOVER RULES DESKTOP */
 @media (hover: hover) and (pointer: fine) {
   .newsletter-form input[type="email"]:hover {
     border-color: #ff3333;
@@ -321,14 +329,12 @@ main > section {
   }
 }
 
-/* Click pulse: red → default → red (bounced visually) */
 .newsletter-form input[type="email"]:focus {
   outline: none;
   animation: inputClickPulse 0.1s ease;
   border-color: #ff3333;
 }
 
-/* TOUCH/HOVER STYLES MOBILE */
 @media (hover: none) and (pointer: coarse) {
   .newsletter-form input[type="email"]:active,
   .newsletter-form input[type="email"]:focus {
@@ -345,42 +351,37 @@ main > section {
   }
 }
 
-
-
-/* Leftmost button: make it a bit wider + different hover */
 .newsletter-link-button:first-child {
-  width: 140px; /* wider than the others */
-  background: #cc2222; /* slightly darker base */
+  width: 140px;
+  background: #cc2222;
 }
 
 .newsletter-link-button:first-child:hover {
-  background: #e04444; /* standout highlight */
+  background: #e04444;
 }
 
-/* Tablet view: stack left-aligned */
 @media screen and (max-width: 1200px) {
   .newsletter-buttons {
     flex-direction: column;
-    align-items: flex-start; /* left-align */
-    padding-left: 1rem; /* optional left padding */
+    align-items: flex-start;
+    padding-left: 1rem;
   }
+
   .newsletter-link-button {
     width: 180px;
   }
+
   .newsletter-link-button:first-child {
     width: 220px;
   }
 }
 
-/* Mobile responsive rules */
 @media screen and (max-width: 768px) {
-
   .newsletter-buttons {
     display: none;
   }
 
   .newsletter-right {
-    display: flex;
     justify-content: center;
     padding: 0;
   }
@@ -403,10 +404,6 @@ main > section {
     margin-bottom: 1rem;
   }
 
-  .newsletter-input::placeholder {
-    content: attr(data-placeholder-mobile);
-  }
-
   .newsletter-title {
     font-size: 2rem;
   }
@@ -416,9 +413,8 @@ main > section {
   }
 }
 
-/* Success / error message container */
 .success-message-container {
-  height: 40px; /* Adjust as needed to fit message size */
+  height: 40px;
   position: relative;
   overflow: visible;
 }
@@ -429,7 +425,7 @@ main > section {
   left: 0;
   right: 0;
   margin: 0 auto;
-  color: #66ff99; /* success green */
+  color: #66ff99;
   font-weight: bold;
   text-align: center;
   opacity: 0;
@@ -438,7 +434,6 @@ main > section {
   pointer-events: none;
 }
 
-/* Slide + fade in */
 @keyframes slideFadeIn {
   from {
     opacity: 0;
@@ -450,7 +445,6 @@ main > section {
   }
 }
 
-/* Slide + fade out */
 @keyframes slideFadeOut {
   from {
     opacity: 1;
@@ -469,6 +463,7 @@ main > section {
 .form-message.hide {
   animation: slideFadeOut 0.4s ease forwards;
 }
+
 
 /* ==========================================================================
    ============================== HEADER ====================================
