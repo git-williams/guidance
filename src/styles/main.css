@@ -229,6 +229,8 @@ main > section {
 .newsletter-form {
   width: 100%;
   max-width: 400px;
+  position: relative;
+  z-index: 1;
 }
 
 .newsletter-form input[type="email"] {
@@ -416,6 +418,9 @@ main > section {
 #emailInput {
   z-index: 2000;
   position: relative;
+  touch-action: manipulation; 
+  -webkit-user-select: auto; 
+  user-select: auto; 
 }
 .form-message {
   pointer-events: none;

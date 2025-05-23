@@ -19,7 +19,7 @@
 
     <!-- Right Side: Form -->
     <div class="newsletter-right">
-      <form id="newsletterForm" class="newsletter-form" novalidate>
+      <form id="newsletterForm" class="newsletter-form" novalidate autocomplete="off">
         <div class="success-message-container">
           <p class="form-message" id="formMessage" aria-live="polite" aria-atomic="true" role="alert"></p>
         </div>
@@ -47,6 +47,15 @@
 </section>
 
 <script is:inline>
+
+requestAnimationFrame(() => {
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('newsletterForm');
+    const input = document.getElementById('emailInput');
+    const message = document.getElementById('formMessage');
+    const honeypot = document.getElementById('website');
+    const button = form.querySelector('button[type="submit"]');
+
   if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
     document.body.classList.add('no-hover');
   }
@@ -145,4 +154,6 @@
       }
     });
   });
+});
+});
 </script>
