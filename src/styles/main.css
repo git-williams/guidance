@@ -423,19 +423,10 @@ main > section {
 
 
 .success-message-container {
- /* height: 40px;
+ height: 40px;
   position: relative;
-  overflow: visible;*/
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  z-index: -1; /* Keep it behind */
-  pointer-events: none; /* Prevent blocking input */
-  opacity: 0;
-  transform: translateY(0.5rem); /* Optional small slide-in */
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
+  overflow: visible;
+  }
 
 .form-message {
     position: absolute;
