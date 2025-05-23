@@ -118,24 +118,30 @@ button.addEventListener('click', () => {
 
 
 
-    function showMessage(text, color) {
-      message.textContent = text;
-      message.style.color = color;
+    let messageActive = false;
 
-      message.classList.remove('show', 'hide');
-      void message.offsetWidth; // force reflow
-      message.classList.add('show');
+function showMessage(text, color) {
+  if (messageActive) return; // prevent new messages until previous is done
+  messageActive = true;
 
-      setTimeout(() => {
-        message.classList.remove('show');
-        message.classList.add('hide');
-      }, 3000);
+  message.textContent = text;
+  message.style.color = color;
 
-      setTimeout(() => {
-        message.classList.remove('hide');
-        message.textContent = '';
-      }, 3500);
-    }
+  message.classList.remove('show', 'hide');
+  void message.offsetWidth; // force reflow
+  message.classList.add('show');
+
+  setTimeout(() => {
+    message.classList.remove('show');
+    message.classList.add('hide');
+  }, 3000);
+
+  setTimeout(() => {
+    message.classList.remove('hide');
+    message.textContent = '';
+    messageActive = false; // allow next message
+  }, 3500);
+}
 
     form.addEventListener('submit', async function (e) {
       e.preventDefault(); // 💥 prevent page reload
