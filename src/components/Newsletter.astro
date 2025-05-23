@@ -58,6 +58,10 @@
     const honeypot = document.getElementById('website');
     const button = form.querySelector('button[type="submit"]');
 
+input.addEventListener('click', () => {
+  input.focus();
+});
+
     function showMessage(text, color) {
       message.textContent = text;
       message.style.color = color;
