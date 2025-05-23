@@ -413,6 +413,15 @@ main > section {
   }
 }
 
+#emailInput {
+  z-index: 2000;
+  position: relative;
+}
+.form-message {
+  pointer-events: none;
+}
+
+
 .success-message-container {
   height: 40px;
   position: relative;
