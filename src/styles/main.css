@@ -20,22 +20,14 @@ body, html {
   font-family: sans-serif;
   height: 100%;
   scroll-behavior: smooth;
-}
-
-/* Disable hover styles completely if .no-hover is set */
-.no-hover .newsletter-form input[type="email"]:hover,
-.no-hover .newsletter-form .submit-button:hover,
-.no-hover .newsletter-link-button:hover,
-.no-hover .newsletter-link-button:first-child:hover {
-  pointer-events: none;
-  background: inherit;
-  border-color: inherit;
-  transform: none;
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  background-color: #333;
 }
 
 /* Fixes for buttons and links active states */
 a, button {
-  transition: transform 0.1s ease;
+  transition: transform 0.2s ease;
 }
 
 input, button {
@@ -48,12 +40,13 @@ button:focus {
 }
 a:active,
 button:active {
-  transform: scale(0.95);
+  transform: scale(0.9);
 }
 
 button:focus {
   outline: none;
   background-color: inherit;
+
 }
 
 /* ==========================================================================
@@ -218,12 +211,18 @@ main > section {
   font-size: 3rem;
   line-height: 1.2;
   margin-bottom: 1rem;
+  white-space: nowrap;
 }
 
 .newsletter-description {
   color: #ccc;
   font-size: 1.25rem;
   max-width: 500px;
+  margin: 0 auto;
+  word-break: break-word;
+  line-height: 1.6;             /* improves vertical spacing between lines */
+  max-width: 40ch;              /* keeps line length readable (40 characters) */
+  margin-top: 1rem;  
 }
 
 .newsletter-form {
@@ -254,6 +253,14 @@ main > section {
   color: #888;
 }
 
+.newsletter-form input[type="email"] {
+  transition: border-color 0.3s ease, background-color 0.2s ease;
+}
+
+.newsletter-form input[type="email"]:hover {
+  border-color: #ff3333;
+}
+
 @keyframes inputClickPulse {
   0%   { border-color: #ff3333; }
   50%  { border-color: #333; }
@@ -275,14 +282,107 @@ main > section {
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.newsletter-form .submit-button:hover {
-  background: #ff5555;
-  transform: translateY(-1px);
+/* === DESKTOP BUTTON INTERACTION === */
+@media (hover: hover) and (pointer: fine) {
+  .submit-button,
+  .newsletter-link-button {
+    transition: transform 0.2s ease, background 0.2s ease;
+    transform: scale(1);
+	background: #ff5555;
+  }
+
+  .submit-button.hovered,
+  .newsletter-link-button.hovered {
+    transform: scale(0.94);
+    background: #ff5555;
+  }
+
+  .submit-button.clicked,
+  .newsletter-link-button.clicked {
+    transform: scale(1);
+	background: #ff5555
+  }
 }
 
-.newsletter-form .submit-button:active {
-  transform: scale(0.98);
+.submit-button:focus,
+.newsletter-link-button:focus {
+  outline: none;
+  background: #ff3333; /* original background */
 }
+
+.submit-button:focus:not(:hover),
+.newsletter-link-button:focus:not(:hover) {
+  background: #ff3333;
+}
+
+/* MOBILE BUTTON INTERACTION */
+
+@keyframes button-bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.submit-button.bounce {
+  animation: button-bounce 0.1s ease forwards;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .newsletter-buttons {
   display: flex;
@@ -297,43 +397,82 @@ main > section {
   height: 40px;
   text-align: center;
   line-height: 40px;
-  background: #ff3333;
+  background: #f84040;
   color: white;
   font-size: 0.9rem;
   font-weight: 500;
   font-family: 'Montserrat', sans-serif;
   border-radius: 20px;
+  border:none;
   text-decoration: none;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.newsletter-link-button:active {
-  transform: scale(0.98);
+.newsletter-link-button:first-child {
+  width: 140px;
+  background: #cc2222;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .newsletter-form input[type="email"]:hover {
-    border-color: #ff3333;
-  }
-
-  .newsletter-form .submit-button:hover {
-    background: #ff5555;
-    transform: translateY(-1px);
-  }
-
-  .newsletter-link-button:hover {
-    background: #ff5555;
-    transform: translateY(-1px);
-  }
-
-  .newsletter-link-button:first-child:hover {
-    background: #e04444;
-  }
+.newsletter-link-button:first-child:hover {
+  background: #e04444;
 }
+
+.newsletter-link-button {
+  background: #f84040; /* base background */
+  color: white;
+  /* existing styles remain */
+}
+
+/* First child has distinct background */
+.newsletter-link-button:first-child {
+  background: #cc2222;
+}
+
+/* Hover state */
+.newsletter-link-button:hover {
+  background: #ff5555;
+}
+
+/* Focus state: keep background red and remove outline */
+.newsletter-link-button:focus {
+  outline: none;
+  background: #ff5555;
+}
+
+/* Clicked class: keep background red */
+.newsletter-link-button.clicked {
+  background: #ff5555 !important;
+}
+
+/* Keep background consistent on hover after click */
+.newsletter-link-button.clicked:hover {
+  background: #ff5555 !important;
+}
+
+.newsletter-link-button:hover,
+.newsletter-link-button.hovered,
+.newsletter-link-button.clicked {
+  background: #ff5555 !important;  /* same bright red for hover and clicked */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .newsletter-form input[type="email"]:focus {
   outline: none;
-  animation: inputClickPulse 0.1s ease;
+  animation: inputClickPulse 0.4s ease;
   border-color: #ff3333;
 }
 
@@ -348,18 +487,9 @@ main > section {
   .newsletter-form .submit-button:active,
   .newsletter-form .submit-button:focus {
     background-color: #ff5555 !important;
-    transform: scale(0.98);
+    transform: scale(0.9);
     outline: none !important;
   }
-}
-
-.newsletter-link-button:first-child {
-  width: 140px;
-  background: #cc2222;
-}
-
-.newsletter-link-button:first-child:hover {
-  background: #e04444;
 }
 
 @media screen and (max-width: 1200px) {
@@ -428,6 +558,9 @@ main > section {
 
 
 .success-message-container {
+  width: 100%;                /* let it use the full available width */
+  max-width: 500px;           /* or increase this if needed */
+  margin: 0 auto;             /* center it horizontally */
  height: 40px;
   position: relative;
   overflow: visible;
@@ -471,7 +604,7 @@ main > section {
 }
 
 .form-message.show {
-  animation: slideFadeIn 0.4s ease forwards;
+  animation: slideFadeIn 0.2s ease forwards;
   opacity: 1;
   transform: translateY(0);
 }
@@ -539,6 +672,7 @@ main > section {
   transition: filter 0.3s ease;
   min-width: 80px;
   flex-shrink: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 .logo:hover {
   filter: brightness(1.3);
@@ -557,6 +691,8 @@ main > section {
   text-decoration: none;
   transition: color 0.3s ease;
   white-space: nowrap;
+font-family: 'Montserrat', sans-serif;
+font-weight: 600;
 }
 .desktop-nav a:hover {
   color: #ffffffcc;
