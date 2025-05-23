@@ -47,81 +47,40 @@
 </section>
 
 <script is:inline>
-
-requestAnimationFrame(() => {
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('newsletterForm');
     const input = document.getElementById('emailInput');
     const message = document.getElementById('formMessage');
     const honeypot = document.getElementById('website');
     const button = form.querySelector('button[type="submit"]');
 
-  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-    document.body.classList.add('no-hover');
-  }
+    function showMessage(text, color) {
+      message.textContent = text;
+      message.style.color = color;
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('newsletterForm');
-    const input = document.getElementById('emailInput');
-    const message = document.getElementById('formMessage');
-    const honeypot = document.getElementById('website');
-    const button = form.querySelector('button[type="submit"]');
+      message.classList.remove('show', 'hide');
+      void message.offsetWidth; // force reflow
+      message.classList.add('show');
 
+      setTimeout(() => {
+        message.classList.remove('show');
+        message.classList.add('hide');
+      }, 3000);
 
-   function showMessage(text, color) {
-  message.textContent = text;
-  message.style.color = color;
-
-  message.classList.remove('show', 'hide');
-  void message.offsetWidth; // force reflow
-  message.classList.add('show');
-
-  setTimeout(() => {
-    message.classList.remove('show');
-    message.classList.add('hide');
-  }, 3000);
-
-  setTimeout(() => {
-    message.classList.remove('hide');
-    message.textContent = '';
-  }, 3500); // bumped from 3400 to ensure full animation cleanup
-}
-
-
-    function updatePlaceholder() {
-      if (window.innerWidth <= 768) {
-        input.placeholder = 'Email';
-      } else {
-        input.placeholder = 'Enter your email';
-      }
-    }
-    updatePlaceholder();
-    window.addEventListener('resize', updatePlaceholder);
-
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-      input.addEventListener('touchstart', () => {
-        input.style.borderColor = '#ff3333';
-      });
-      input.addEventListener('touchend', () => {
-        input.style.borderColor = '#333';
-      });
-
-      button.addEventListener('touchstart', () => {
-        button.style.backgroundColor = '#ff5555';
-      });
-      button.addEventListener('touchend', () => {
-        button.style.backgroundColor = '#ff3333';
-      });
+      setTimeout(() => {
+        message.classList.remove('hide');
+        message.textContent = '';
+      }, 3500);
     }
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault(); // 💥 prevent page reload
       if (honeypot.value !== '') return;
 
       const email = input.value.trim();
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (email === '') {
+      if (!email) {
         showMessage('Email is required.', '#ff6666');
         return;
       }
@@ -143,7 +102,7 @@ requestAnimationFrame(() => {
         if (res.ok) {
           showMessage("Thanks! You're on the list.", '#66ff99');
           input.value = '';
-          form.reset(); // clear
+          form.reset();
         } else {
           showMessage('Something went wrong. Please try again.', '#ff6666');
         }
@@ -154,6 +113,4 @@ requestAnimationFrame(() => {
       }
     });
   });
-});
-});
 </script>
