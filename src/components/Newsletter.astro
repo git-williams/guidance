@@ -20,7 +20,7 @@
     <!-- Right Side: Form -->
     <div class="newsletter-right">
       <form id="newsletterForm" class="newsletter-form" novalidate>
-        <!--<div class="success-message-container">-->
+        <div class="success-message-container">
           <p class="form-message" id="formMessage" aria-live="polite" aria-atomic="true" role="alert"></p>
         </div>
         <input
@@ -58,28 +58,26 @@
     const honeypot = document.getElementById('website');
     const button = form.querySelector('button[type="submit"]');
 
-input.addEventListener('click', () => {
-  input.focus();
-});
 
-    function showMessage(text, color) {
-      message.textContent = text;
-      message.style.color = color;
+   function showMessage(text, color) {
+  message.textContent = text;
+  message.style.color = color;
 
-      message.classList.remove('show', 'hide');
-      void message.offsetWidth;
-      message.classList.add('show');
+  message.classList.remove('show', 'hide');
+  void message.offsetWidth; // force reflow
+  message.classList.add('show');
 
-      setTimeout(() => {
-        message.classList.remove('show');
-        message.classList.add('hide');
-      }, 3000);
+  setTimeout(() => {
+    message.classList.remove('show');
+    message.classList.add('hide');
+  }, 3000);
 
-      setTimeout(() => {
-        message.classList.remove('hide');
-        message.textContent = '';
-      }, 3400);
-    }
+  setTimeout(() => {
+    message.classList.remove('hide');
+    message.textContent = '';
+  }, 3500); // bumped from 3400 to ensure full animation cleanup
+}
+
 
     function updatePlaceholder() {
       if (window.innerWidth <= 768) {
@@ -136,6 +134,7 @@ input.addEventListener('click', () => {
         if (res.ok) {
           showMessage("Thanks! You're on the list.", '#66ff99');
           input.value = '';
+          form.reset(); // clear
         } else {
           showMessage('Something went wrong. Please try again.', '#ff6666');
         }
