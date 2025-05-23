@@ -507,7 +507,7 @@ main > section {
     width: 220px;
   }
 }
-
+/*MOBILE ACCOMMODATIONS*/
 @media screen and (max-width: 768px) {
   .newsletter-buttons {
     display: none;
@@ -524,10 +524,14 @@ main > section {
     text-align: center;
   }
 
+  .newsletter-form {
+ width: clamp(400px, 90vw, 600px);;
+  }
+
   .newsletter-form input[type="email"],
   .newsletter-form button[type="submit"] {
-    width: 90%;
-    max-width: 400px;
+    width: 100%;
+    max-width: 600px;
     margin: 0 auto;
     display: block;
   }
@@ -559,11 +563,12 @@ main > section {
 
 .success-message-container {
   width: 100%;                /* let it use the full available width */
-  max-width: 500px;           /* or increase this if needed */
+  max-width: 700px;           /* or increase this if needed */
   margin: 0 auto;             /* center it horizontally */
  height: 40px;
   position: relative;
-  overflow: visible;
+  overflow-x: auto;
+  white-space: nowrap;
   }
 
 .form-message {
