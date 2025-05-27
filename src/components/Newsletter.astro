@@ -1,5 +1,4 @@
 ---
-// No frontmatter needed
 ---
 <section class="newsletter-section">
   <div class="newsletter-container">
@@ -17,12 +16,30 @@
       </div>
     </div>
 
-    <!-- Right Side: Form -->
-    <div class="newsletter-right">
-      <form id="newsletterForm" class="newsletter-form" novalidate autocomplete="email">
-        <div class="success-message-container">
-          <p class="form-message" id="formMessage" aria-live="polite" aria-atomic="true" role="alert"></p>
-        </div>
+   <!-- Right Side: Form -->
+<div class="newsletter-right">
+  <form id="newsletterForm" class="newsletter-form" novalidate autocomplete="email">
+    <div 
+      class="success-message-container" 
+      style="position: relative;" >
+
+      <p class="form-message" id="formMessage" aria-live="polite" aria-atomic="true" role="alert"></p>
+      <div
+        id="confettiContainer"
+        aria-hidden="true"
+        style="
+          position: absolute;
+          top: 0px;
+          left: 0;
+          width: 100%;
+          height: 400px;
+          pointer-events: none;
+          overflow: visible;
+          z-index: 9999;
+        "
+      ></div>
+    </div>
+
         <input
           type="email"
           id="emailInput"
@@ -46,6 +63,52 @@
   </div>
 </section>
 
+<style>
+  /* Keep your original confetti CSS with minor change: remove #confettiContainer rules here, since we inline them now */
+  .confetti-pop {
+    position: absolute;
+    width: 6px;
+    height: 12px;
+    background-color: #66ff99; /* green */
+    border-radius: 2px;
+    opacity: 1;
+    will-change: transform, opacity;
+  }
+
+  @keyframes popOutLeft {
+    0% {
+      opacity: 1;
+      transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-30px, -40px) rotate(-20deg);
+    }
+  }
+
+  @keyframes popOutCenter {
+    0% {
+      opacity: 1;
+      transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(0px, -50px) rotate(10deg);
+    }
+  }
+
+  @keyframes popOutRight {
+    0% {
+      opacity: 1;
+      transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(30px, -40px) rotate(20deg);
+    }
+  }
+</style>
+
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('newsletterForm');
@@ -54,7 +117,7 @@
     const honeypot = document.getElementById('website');
     const button = form.querySelector('button[type="submit"]');
 
-// Desktop interaction simulation
+    // Button hover/click animations
     button.addEventListener('mouseenter', () => {
       if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
         button.classList.add('hovered');
@@ -65,86 +128,218 @@
       button.classList.remove('hovered', 'clicked');
     });
 
-    button.addEventListener('mousedown', () => {
-      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        button.classList.add('clicked');
-      }
-    });
+  button.addEventListener('mousedown', () => {
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    button.classList.add('clicked');
+
+    // Trigger bounce on desktop clicks
+    button.classList.remove('bounce');
+    void button.offsetWidth; // force reflow
+    button.classList.add('bounce');
+  }
+});
+
 
     button.addEventListener('mouseup', () => {
       button.classList.remove('clicked');
       button.classList.add('hovered');
     });
 
-        // Apply the same interaction to all link buttons
-const linkButtons = document.querySelectorAll('.newsletter-link-button');
+    // Link buttons hover/click animations
+    const linkButtons = document.querySelectorAll('.newsletter-link-button');
+    linkButtons.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+          link.classList.add('hovered');
+        }
+      });
+      link.addEventListener('mouseleave', () => {
+        link.classList.remove('hovered', 'clicked');
+      });
+      link.addEventListener('mousedown', () => {
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+          link.classList.add('clicked');
+        }
+      });
+      link.addEventListener('mouseup', () => {
+        link.classList.remove('clicked');
+        link.classList.add('hovered');
+      });
+    });
 
-linkButtons.forEach(link => {
-  link.addEventListener('mouseenter', () => {
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      link.classList.add('hovered');
-    }
-  });
+    // Mobile bounce on button click
+    button.addEventListener('click', () => {
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        button.classList.remove('bounce');
+        void button.offsetWidth;
+        button.classList.add('bounce');
+      }
+    });
 
-  link.addEventListener('mouseleave', () => {
-    link.classList.remove('hovered', 'clicked');
-  });
+    // Confetti function
+function launchConfettiPops() {
+  const container = document.getElementById('confettiContainer');
+  const form = document.querySelector('.newsletter-form');
+  container.innerHTML = '';
 
-  link.addEventListener('mousedown', () => {
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      link.classList.add('clicked');
-    }
-  });
+  const numberOfMainConfetti = 9;
+  const numberOfFastConfetti = 6;
+  const containerWidth = form.offsetWidth;
+  const centerIndex = Math.floor(numberOfMainConfetti / 2);
+  const maxAngle = 20;
+  const maxDistanceVariation = 0.15;
 
-  link.addEventListener('mouseup', () => {
-    link.classList.remove('clicked');
-    link.classList.add('hovered');
-  });
-});
+  const mainDistance = 45;
+  const mainInDistance = mainDistance * 0.4;
+  const mainOutDistance = mainDistance * 0.6;
 
-// On mobile/touch devices: trigger bounce on button click
-button.addEventListener('click', () => {
-  // Only on devices without hover (mobile)
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    // Remove bounce class if it's still there (to allow re-trigger)
-    button.classList.remove('bounce');
-    // Trigger reflow to restart animation
-    void button.offsetWidth;
-    // Add bounce class to start animation
-    button.classList.add('bounce');
+  // Match fast confetti speeds
+  const mainSpeed = 0.083; // ~45px in 540ms
+  const mainHold = 0;
+  const mainFadeIn = 0;
+  const mainFadeOut = 200;
+
+  const fastDistance = 25;
+  const fastDuration = 300;
+  const fastFadeOut = 200;
+
+  function createConfetti({ angle, distance, duration, fadeOutDuration, size, color, delay, rotate }) {
+    const el = document.createElement('div');
+    el.className = 'confetti-pop';
+    el.style.width = `${size.width}px`;
+    el.style.height = `${size.height}px`;
+    el.style.backgroundColor = color;
+    el.style.borderRadius = '1px';
+    el.style.left = `${(angle.index / (angle.total - 1)) * containerWidth}px`;
+    el.style.top = `0px`;
+    el.style.opacity = '0';
+
+    const radians = angle.value * (Math.PI / 180);
+    const centerOffset = Math.abs(angle.index - centerIndex) / centerIndex;
+    const distanceFactor = 1 - centerOffset * maxDistanceVariation;
+
+    const x = Math.sin(radians) * distance * distanceFactor;
+    const y = -Math.cos(radians) * distance * distanceFactor;
+
+    el.style.transform = `translate(0px, 0px) rotate(${rotate}deg)`;
+    el.style.transition = `transform ${duration}ms ease-out, opacity 0ms ease-out`;
+
+    container.appendChild(el);
+
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        el.style.opacity = '1';
+        el.style.transform = `translate(${x}px, ${y}px) rotate(${rotate}deg)`;
+      }, 10);
+    });
+
+    setTimeout(() => {
+      el.style.transition = `opacity ${fadeOutDuration}ms ease-in`;
+      el.style.opacity = '0';
+    }, delay + duration);
+
+    setTimeout(() => {
+      el.remove();
+    }, delay + duration + fadeOutDuration + 100);
   }
-});
 
+  // Launch main confetti
+  for (let i = 0; i < numberOfMainConfetti; i++) {
+    const angle = -maxAngle + (i / (numberOfMainConfetti - 1)) * (maxAngle * 2);
+    const radians = angle * (Math.PI / 180);
+    const centerOffset = Math.abs(i - centerIndex) / centerIndex;
+    const distanceFactor = 1 - centerOffset * maxDistanceVariation;
 
+    const x1 = Math.sin(radians) * mainInDistance * distanceFactor;
+    const y1 = -Math.cos(radians) * mainInDistance * distanceFactor;
+    const x2 = Math.sin(radians) * mainOutDistance * distanceFactor;
+    const y2 = -Math.cos(radians) * mainOutDistance * distanceFactor;
 
+    const inDuration = (mainInDistance * distanceFactor) / mainSpeed;
+    const outDuration = mainFadeOut;
+
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti-pop';
+    confetti.style.width = '5px';
+    confetti.style.height = '12px';
+    confetti.style.backgroundColor = '#66ff99';
+    confetti.style.borderRadius = '1px';
+    confetti.style.pointerEvents = 'none';
+    confetti.style.left = `${(i / (numberOfMainConfetti - 1)) * containerWidth}px`;
+    confetti.style.top = `0px`;
+    confetti.style.opacity = '0';
+    confetti.style.transform = `translate(0px, 0px) rotate(${angle}deg)`;
+    confetti.style.transition = `transform ${inDuration}ms ease-out, opacity 0ms ease-out`;
+
+    container.appendChild(confetti);
+
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        confetti.style.opacity = '1';
+        confetti.style.transform = `translate(${x1}px, ${y1}px) rotate(${angle}deg)`;
+      }, 10);
+    });
+
+    setTimeout(() => {
+      confetti.style.transition = `transform ${outDuration}ms ease-in, opacity ${mainFadeOut}ms ease-in`;
+      confetti.style.opacity = '0';
+      confetti.style.transform = `translate(${x1 + x2}px, ${y1 + y2}px) rotate(${angle}deg)`;
+    }, inDuration + mainHold);
+
+    setTimeout(() => {
+      confetti.remove();
+    }, inDuration + mainHold + outDuration + 100);
+  }
+
+  // Launch fast (tiny) confetti burst
+  for (let i = 0; i < numberOfFastConfetti; i++) {
+    const angle = -maxAngle + (i / (numberOfFastConfetti - 1)) * (maxAngle * 2);
+    createConfetti({
+      angle: { value: angle, index: i, total: numberOfFastConfetti },
+      distance: fastDistance,
+      duration: fastDuration,
+      fadeOutDuration: fastFadeOut,
+      size: { width: 5, height: 6 },
+      color: '#66ff99',
+      delay: 0,
+      rotate: angle
+    });
+  }
+}
+
+// --- END OF REPLACE launchConfettiPops() ---
+
+    console.log('launchConfettiPops() function loaded');
 
     let messageActive = false;
-
-function showMessage(text, color) {
-  if (messageActive) return; // prevent new messages until previous is done
+  function showMessage(text, color) {
+  if (messageActive) return;
   messageActive = true;
 
   message.textContent = text;
   message.style.color = color;
 
   message.classList.remove('show', 'hide');
-  void message.offsetWidth; // force reflow
+  void message.offsetWidth;
   message.classList.add('show');
 
+  // ⏲️ Confetti sync: fade out after ~2450ms
   setTimeout(() => {
     message.classList.remove('show');
     message.classList.add('hide');
-  }, 3000);
+  }, 2000); // fade out
 
+  // 💨 Fully remove text after 100ms fade + buffer
   setTimeout(() => {
     message.classList.remove('hide');
     message.textContent = '';
-    messageActive = false; // allow next message
-  }, 3500);
+    messageActive = false;
+  }, 2600); // full cleanup
 }
 
+
     form.addEventListener('submit', async function (e) {
-      e.preventDefault(); // 💥 prevent page reload
+      e.preventDefault();
       if (honeypot.value !== '') return;
 
       const email = input.value.trim();
@@ -168,9 +363,11 @@ function showMessage(text, color) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email }),
         });
+        console.log('Form submit status:', res.status);
 
         if (res.ok) {
           showMessage("Thanks! You're on the list", '#66ff99');
+          launchConfettiPops();
           input.value = '';
           form.reset();
         } else {

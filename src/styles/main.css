@@ -24,6 +24,14 @@ body, html {
   overscroll-behavior-y: none;
   background-color: #333;
 }
+/* let the confetti RAIN*/
+.newsletter-section,
+.newsletter-container,
+.newsletter-right,
+.newsletter-form,
+.success-message-container {
+  overflow: visible !important;
+}
 
 /* Fixes for buttons and links active states */
 a, button {
@@ -41,13 +49,14 @@ button:focus {
 a:active,
 button:active {
   transform: scale(0.9);
+  transform-origin: center;
 }
 
-button:focus {
+/*button:focus {
   outline: none;
   background-color: inherit;
 
-}
+}*/
 
 /* ==========================================================================
    ============================== BACKGROUND =================================
@@ -170,7 +179,7 @@ main > section {
 }
 
 .newsletter-section {
-  background: #111;
+  background: #444444;
   padding-top: clamp(12rem, 25vh, 16rem);
   padding-bottom: clamp(4rem, 8vh, 6rem);
   padding-left: 2rem;
@@ -227,7 +236,7 @@ main > section {
 
 .newsletter-form {
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   position: relative;
   z-index: 1;
 }
@@ -247,6 +256,10 @@ main > section {
   transition: border-color 0.3s ease;
   margin: 0 auto;
   display: block;
+pointer-events: auto;
+z-index: 5000;
+position: relative;
+
 }
 
 .newsletter-form input[type="email"]::placeholder {
@@ -258,79 +271,70 @@ main > section {
 }
 
 .newsletter-form input[type="email"]:hover {
-  border-color: #ff3333;
+  border-color: #66ff99;
 }
 
 @keyframes inputClickPulse {
-  0%   { border-color: #ff3333; }
+  0%   { border-color: #66ff99; }
   50%  { border-color: #333; }
-  100% { border-color: #ff3333; }
+  100% { border-color: #66ff99; }
 }
 
 .newsletter-form .submit-button {
-  margin-top: 1rem;
+ margin-top: 1rem;
   width: 100%;
   height: 48px;
-  background: #ff3333;
+  background: #2C2C2E;
   color: white;
   font-size: 1.1rem;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
-  border: none;
-  border-radius: 8px;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
 /* === DESKTOP BUTTON INTERACTION === */
+/* Match hover and clicked states with newsletter-link-button */
+/* DESKTOP STYLES ONLY */
 @media (hover: hover) and (pointer: fine) {
   .submit-button,
   .newsletter-link-button {
+    background: #2C2C2E;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
     transition: transform 0.2s ease, background 0.2s ease;
     transform: scale(1);
-	background: #ff5555;
+    border-radius: 8px;
+	border-color: #232324;
+    outline: none;
+	border: 2.2px solid;
+	border-color: #232324;
+    transform-origin: center;
+    will-change: transform;
   }
 
   .submit-button.hovered,
   .newsletter-link-button.hovered {
-    transform: scale(0.94);
-    background: #ff5555;
+    transform: scale(0.98);
+    background: #a7a7a7 !important;
   }
 
   .submit-button.clicked,
   .newsletter-link-button.clicked {
     transform: scale(1);
-	background: #ff5555
+    background: #a7a7a7 !important;
   }
-}
 
-.submit-button:focus,
-.newsletter-link-button:focus {
-  outline: none;
-  background: #ff3333; /* original background */
-}
-
-.submit-button:focus:not(:hover),
-.newsletter-link-button:focus:not(:hover) {
-  background: #ff3333;
-}
-
-/* MOBILE BUTTON INTERACTION */
-
-@keyframes button-bounce {
-  0% {
-    transform: scale(1);
+  .submit-button:hover,
+  .newsletter-link-button:hover {
+    background: #a7a7a7;
   }
-  50% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 
-.submit-button.bounce {
-  animation: button-bounce 0.1s ease forwards;
+  .submit-button:focus:not(:hover),
+  .newsletter-link-button:focus:not(:hover) {
+    background: #2C2C2E;
+  }
 }
 
 
@@ -390,69 +394,66 @@ main > section {
   gap: 1rem;
   margin-top: 2rem;
   flex-wrap: wrap;
+
 }
 
 .newsletter-link-button {
   width: 120px;
   height: 40px;
-  text-align: center;
-  line-height: 40px;
-  background: #f84040;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: auto;
+  background: #2C2C2E;
   color: white;
   font-size: 0.9rem;
   font-weight: 500;
   font-family: 'Montserrat', sans-serif;
-  border-radius: 20px;
-  border:none;
+  border-radius: 8px;
   text-decoration: none;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .newsletter-link-button:first-child {
   width: 140px;
-  background: #cc2222;
+  background: #2C2C2E;
 }
 
 .newsletter-link-button:first-child:hover {
-  background: #e04444;
+  background: #707071;
 }
 
 .newsletter-link-button {
-  background: #f84040; /* base background */
+  background: #2C2C2E; /* base background */
   color: white;
   /* existing styles remain */
 }
 
-/* First child has distinct background */
-.newsletter-link-button:first-child {
-  background: #cc2222;
-}
-
 /* Hover state */
 .newsletter-link-button:hover {
-  background: #ff5555;
+  background: #707071;
 }
 
 /* Focus state: keep background red and remove outline */
 .newsletter-link-button:focus {
   outline: none;
-  background: #ff5555;
+  background: #2C2C2E;
 }
 
 /* Clicked class: keep background red */
 .newsletter-link-button.clicked {
-  background: #ff5555 !important;
+  background: #a7a7a7 !important;
 }
 
 /* Keep background consistent on hover after click */
 .newsletter-link-button.clicked:hover {
-  background: #ff5555 !important;
+  background: #707071 !important;
 }
 
 .newsletter-link-button:hover,
 .newsletter-link-button.hovered,
 .newsletter-link-button.clicked {
-  background: #ff5555 !important;  /* same bright red for hover and clicked */
+  background: #a7a7a7 !important;  /* same bright red for hover and clicked */
 }
 
 
@@ -473,20 +474,24 @@ main > section {
 .newsletter-form input[type="email"]:focus {
   outline: none;
   animation: inputClickPulse 0.4s ease;
-  border-color: #ff3333;
 }
+
+.newsletter-form input[type="email"]:focus:not(:hover) {
+  border-color: #2C2C2E;
+}
+
 
 @media (hover: none) and (pointer: coarse) {
   .newsletter-form input[type="email"]:active,
   .newsletter-form input[type="email"]:focus {
-    border-color: #ff3333 !important;
+    border-color: #232324 !important;
     background-color: #000000 !important;
     outline: none !important;
   }
 
   .newsletter-form .submit-button:active,
   .newsletter-form .submit-button:focus {
-    background-color: #ff5555 !important;
+    background-color: #2C2C2E !important;
     transform: scale(0.9);
     outline: none !important;
   }
@@ -512,6 +517,52 @@ main > section {
   .newsletter-buttons {
     display: none;
   }
+
+
+
+
+
+
+.newsletter-form .submit-button {
+ margin-top: 1rem;
+  width: 100%;
+  height: 48px;
+  background: #2C2C2E;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  border: 2.2px solid;
+  outline: none;
+  border-color:#232324;
+  border-radius: 6px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+
+
+
+
+
+
+
+
+  @keyframes button-bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.94);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.submit-button.bounce {
+  animation: button-bounce 0.1s ease forwards;
+}
 
   .newsletter-right {
     justify-content: center;
@@ -556,23 +607,23 @@ main > section {
   -webkit-user-select: auto; 
   user-select: auto; 
 }
-.form-message {
-  pointer-events: none;
-}
 
 
 .success-message-container {
-  width: 100%;                /* let it use the full available width */
-  max-width: 700px;           /* or increase this if needed */
-  margin: 0 auto;             /* center it horizontally */
- height: 40px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  height: auto;
+  min-height: 40px;
+  padding: 12px 0;
   position: relative;
+  overflow: visible;
   overflow-x: auto;
   white-space: nowrap;
-  }
+}
 
 .form-message {
-    position: absolute;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -581,15 +632,17 @@ main > section {
   font-weight: bold;
   text-align: center;
   opacity: 0;
-  transform: translateY(-20px);
-  animation-fill-mode: forwards;
+  transform: translateY(-10px);
   pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
+/* Animations */
 @keyframes slideFadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -604,21 +657,18 @@ main > section {
   }
   to {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-5px);
   }
 }
 
 .form-message.show {
-  animation: slideFadeIn 0.2s ease forwards;
-  opacity: 1;
-  transform: translateY(0);
+  animation: slideFadeIn 0.3s ease forwards;
 }
 
 .form-message.hide {
-  animation: slideFadeOut 0.4s ease forwards;
-  opacity: 0;
-  transform: translateY(-20px);
+  animation: slideFadeOut 0.25s ease forwards;
 }
+
 
 
 /* ==========================================================================
@@ -825,6 +875,90 @@ font-weight: 600;
   justify-content: center;
   align-items: center;
 }
+/* ==========================================================================
+   ============================== CONFETTI ====================================
+   ========================================================================== */
+
+   /*#confettiContainer { --this is in the html.
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100px;
+  height: 400px;
+  pointer-events: none;
+  transform: translateX(-50%);
+  overflow: visible;
+  z-index: 6000;
+}*/
+
+.confetti-pop {
+  position: absolute;
+  width: 3px;
+  height: 16px;
+  background-color: #66ff99;
+  pointer-events: none;
+  /* No border radius for sharper lines */
+  border-radius: 0;
+}
+
+
+/* ANIMATION CONFETTI*/
+
+@keyframes popOutLeft {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50px, -70px) rotate(-40deg);
+  }
+}
+
+@keyframes popOutCenter {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0px, -80px) rotate(30deg);
+  }
+}
+
+@keyframes popOutRight {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(50px, -70px) rotate(40deg);
+  }
+}
+
+@keyframes popOutArc {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    /* translate outward in direction of angle, about 70px out */
+    transform: translate(
+      calc(70px * cos(var(--angle))),
+      calc(-70px * sin(var(--angle)))
+    ) rotate(var(--angle));
+  }
+}
+
+/* Fix to use JS angle in CSS: We can’t do calc() with deg inside translate directly,
+   so we'll do a workaround by setting the transform from JS instead. 
+   Instead, update the JS below to set transform on each element directly.*/
+
+
+
+
 
 /* ==========================================================================
    ============================== END =======================================
