@@ -1,1 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Baseline — ReliablePro Services (Demo)</title>
+<meta name="description" content="Baseline — Conversion-first services starter site (plumbing, electrical, HVAC) — demo homepage.">
+<style>
+  /* ====== Basic variables & reset ====== */
+  :root{
+    --bg:#f7fbff;
+    --card:#ffffff;
+    --muted:#6b7280;
+    --brand:#0b5fff;
+    --accent:#0f4b8f;
+    --success:#06b6a4;
+    --glass: rgba(255,255,255,0.6);
+    --shadow: 0 8px 24px rgba(11,15,30,0.06);
+    --radius: 12px;
+    --maxw:1200px;
+    --ease: cubic-bezier(.2,.9,.2,1);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    margin:0;
+    background:linear-gradient(180deg,var(--bg),#eef6ff);
+    color:#0b1620;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+    -webkit-tap-highlight-color: transparent;
+  }
 
+  a { color: inherit; text-decoration: none; }
+  img { max-width:100%; display:block; }
+
+  /* Layout container */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 20px;}
+
+  /* ===== Header ===== */
+  header.site-header{
+    position:sticky;top:0;z-index:40;
+    backdrop-filter: blur(6px);
+    background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.55));
+    border-bottom: 1px solid rgba(11,15,30,0.04);
+  }
+  .nav-row{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:var(--maxw);margin:0 auto;padding:12px 20px;}
+  .brand {
+    display:flex;align-items:center;gap:12px;
+  }
+  .back-btn{
+    background:transparent;border:0;padding:8px 10px;border-radius:8px;font-weight:600;color:var(--accent);
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    transition:transform .18s var(--ease), background-color .18s var(--ease);
+  }
+  .back-btn:hover{transform:translateX(-3px);background:rgba(11,15,30,0.03)}
+  .logo-mark{
+    width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--accent));
+    display:grid;place-items:center;color:white;font-weight:700;
+    box-shadow: 0 6px 18px rgba(11,15,30,0.08);
+  }
+  nav.desktop {
+    display:flex;gap:18px;align-items:center;
+  }
+  nav.desktop a{padding:8px 10px;border-radius:8px;color:var(--muted);font-weight:600}
+  nav.desktop a.cta{background:var(--brand);color:white;padding:10px 14px}
+  /* Mobile menu toggle */
+  .mobile-toggle{display:none;border:0;background:transparent;padding:8px}
+
+  /* ===== Hero ===== */
+  .hero{
+    min-height:72vh;display:grid;align-items:center;padding:48px 0;position:relative;overflow:hidden;
+  }
+  .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center;}
+  .hero-title{font-size:clamp(28px,4vw,40px);line-height:1.02;margin:0 0 14px;font-weight:800;letter-spacing:-0.02em}
+  .hero-sub{color:var(--muted);margin-bottom:20px;font-size:16px}
+  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);border:0}
+  .btn-primary{background:var(--brand);color:white}
+  .btn-outline{background:transparent;border:1px solid rgba(11,15,30,0.06);color:var(--accent)}
+  .hero-card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.75));
+    border-radius:14px;padding:18px;box-shadow:var(--shadow);
+  }
+  .hero-figure{height:280px;border-radius:10px;overflow:hidden;position:relative;background:#e9f1ff}
+
+  /* subtle animated stripe/shape in hero */
+  .hero-figure::before{
+    content:"";position:absolute;inset:0;background:
+    radial-gradient(800px 300px at 10% 20%, rgba(11,95,255,0.07), transparent 10%),
+    linear-gradient(135deg, rgba(11,95,255,0.04), transparent 30%);
+    transition:transform 0.6s var(--ease);
+  }
+  /* ===== Quick trust strip ===== */
+  .trust-strip{display:flex;gap:12px;margin:18px 0;padding:12px;border-radius:12px;background:linear-gradient(90deg, rgba(11,95,255,0.03), rgba(6,182,164,0.02));align-items:center;justify-content:space-between}
+  .trust-item{display:flex;gap:10px;align-items:center}
+  .trust-item strong{display:block}
+  .tag{background:rgba(11,95,255,0.1);color:var(--brand);padding:8px;border-radius:8px;font-weight:700}
+
+  /* ===== Services grid ===== */
+  .section { padding:48px 0; }
+  .section h2{font-size:20px;margin:0 0 14px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow);transition:transform .28s var(--ease), box-shadow .28s var(--ease)}
+  .card:hover{transform:translateY(-8px);box-shadow:0 16px 40px rgba(11,15,30,0.08)}
+  .card h3{margin:6px 0 6px}
+  .card p{color:var(--muted);font-size:14px;margin:0 0 12px}
+  .service-grid{display:flex;gap:12px;align-items:center}
+  .icon{
+    width:64px;height:64px;border-radius:10px;background:linear-gradient(135deg, rgba(11,95,255,0.08), rgba(15,75,143,0.06));
+    display:grid;place-items:center;font-weight:800;color:var(--accent)
+  }
+
+  /* ===== Why choose us ===== */
+  .why{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+  .why img{border-radius:12px;object-fit:cover;height:100%;width:100%}
+  .bullets{display:grid;gap:12px}
+  .bullet{display:flex;gap:12px;align-items:flex-start}
+  .bullet .dot{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--accent));color:white;display:grid;place-items:center;font-weight:800}
+
+  /* ===== Testimonials slider ===== */
+  .testimonials{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:center}
+  .slider{position:relative;overflow:hidden;padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.95),#fff);box-shadow:var(--shadow)}
+  .slides{display:flex;gap:12px;transition:transform .5s var(--ease)}
+  .review{min-width:320px;background:linear-gradient(180deg,#f9fbff,#ffffff);padding:14px;border-radius:10px}
+  .rating{color:var(--accent);font-weight:800}
+
+  .slider-controls{display:flex;gap:8px;align-items:center;justify-content:flex-start;margin-top:12px}
+
+  /* ===== CTA banner ===== */
+  .cta-banner{display:flex;align-items:center;justify-content:space-between;padding:22px;border-radius:14px;background:linear-gradient(90deg,var(--brand),var(--accent));color:white;margin:18px 0}
+  .cta-banner h3{margin:0;font-size:20px}
+  .cta-banner p{margin:0;color:rgba(255,255,255,0.9)}
+
+  /* ===== Contact / Footer ===== */
+  .contact{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+  .contact form{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+  .form-row{display:flex;gap:10px}
+  .input, textarea, select{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(11,15,30,0.06);font-size:14px}
+  .footer{padding:28px 0;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+
+  /* ===== Animations: hidden -> in-view ===== */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease), transform .6s var(--ease)}
+  .reveal.in-view{opacity:1;transform:none}
+
+  /* responsive */
+  @media (max-width:1000px){
+    .hero-grid{grid-template-columns:1fr 360px}
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .testimonials{grid-template-columns:1fr}
+    .contact{grid-template-columns:1fr}
+  }
+  @media (max-width:720px){
+    .wrap{padding:18px}
+    .nav-row{padding:12px 16px}
+    nav.desktop{display:none}
+    .mobile-toggle{display:inline-flex}
+    .hero-grid{grid-template-columns:1fr}
+    .hero-figure{height:220px}
+    .cards{grid-template-columns:1fr}
+    .why{grid-template-columns:1fr}
+  }
+
+  /* mobile nav pane */
+  .mobile-nav{
+    position:fixed;inset:58px 16px auto 16px;background:var(--card);border-radius:12px;box-shadow:0 12px 40px rgba(11,15,30,0.12);padding:12px;
+    display:none;flex-direction:column;gap:10px;z-index:60;
+  }
+  .mobile-nav.open{display:flex}
+
+  /* small utilities */
+  .muted{color:var(--muted)}
+  .kbd{padding:6px 8px;border-radius:8px;background:#f4f7ff;font-weight:700}
+</style>
+</head>
+<body>
+
+<header class="site-header" role="banner" aria-label="Main header">
+  <div class="nav-row">
+    <div class="brand">
+      <a class="back-btn" href="#" aria-label="Back to gallery">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back
+      </a>
+      <div class="logo-mark" aria-hidden>RP</div>
+      <div>
+        <div style="font-weight:800">ReliablePro</div>
+        <div style="font-size:12px;color:var(--muted)">Services • Conversion-first</div>
+      </div>
+    </div>
+
+    <nav class="desktop" role="navigation" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact" class="cta">Get a Quote</a>
+    </nav>
+
+    <button class="mobile-toggle" aria-expanded="false" aria-controls="mobile-nav" title="Open menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div id="mobile-nav" class="mobile-nav" role="menu" aria-hidden="true">
+    <a href="#services" role="menuitem">Services</a>
+    <a href="#why" role="menuitem">Why Us</a>
+    <a href="#testimonials" role="menuitem">Reviews</a>
+    <a href="#contact" role="menuitem" class="cta">Get a Quote</a>
+    <small class="muted">Call us: <a href="tel:+18005550123">+1 (800) 555-0123</a></small>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-label="Hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <h1 class="hero-title reveal">Reliable service. Done right.</h1>
+          <p class="hero-sub reveal" style="transition-delay:.05s">
+            Fast, licensed technicians for plumbing, electrical, HVAC and general maintenance. Clear pricing, quick response, satisfaction guaranteed.
+          </p>
+
+          <div class="hero-ctas reveal" style="transition-delay:.12s">
+            <button class="btn btn-primary" onclick="openContact()" title="Request a free quote">Get a Free Quote</button>
+            <a class="btn btn-outline" href="tel:+18005550123" title="Call now">Call Now</a>
+          </div>
+
+          <div class="trust-strip reveal" style="margin-top:20px;transition-delay:.18s">
+            <div class="trust-item">
+              <div class="tag">Licensed</div>
+              <div>
+                <strong>Insured & Certified</strong>
+                <div class="muted" style="font-size:13px">Local pros with verified credentials</div>
+              </div>
+            </div>
+            <div class="trust-item" style="justify-self:end">
+              <div>
+                <strong>24/7 Response</strong>
+                <div class="muted" style="font-size:13px">Emergency service, same-day booking</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <aside class="hero-card reveal" style="transition-delay:.22s" aria-hidden="true">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <div>
+              <div style="font-weight:800">Request a Service</div>
+              <div class="muted" style="font-size:13px">Quick estimate & ETA</div>
+            </div>
+            <div class="kbd">Avg. 30 min</div>
+          </div>
+
+          <div class="hero-figure" id="hero-figure">
+            <!-- decorative image or SVG -->
+            <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1">
+                  <stop offset="0" stop-color="#e7f0ff"/>
+                  <stop offset="1" stop-color="#ffffff"/>
+                </linearGradient>
+              </defs>
+              <rect width="800" height="400" fill="url(#g1)"/>
+              <g transform="translate(40,20)">
+                <rect x="0" y="60" width="300" height="240" rx="12" fill="#fff" opacity="0.9" />
+                <g transform="translate(16,80)" fill="#0b5fff">
+                  <rect x="0" y="0" width="60" height="12" rx="6" />
+                  <rect x="0" y="26" width="120" height="12" rx="6" />
+                  <rect x="0" y="52" width="200" height="12" rx="6" />
+                </g>
+                <circle cx="420" cy="180" r="70" fill="#0f4b8f" opacity="0.07" />
+                <rect x="360" y="90" width="240" height="160" rx="12" fill="#fff" opacity="0.9" />
+                <text x="380" y="160" fill="#0b1620" font-size="22" font-weight="700">On-site ✔</text>
+              </g>
+            </svg>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:14px">
+            <button class="btn" onclick="openContact()">Request</button>
+            <button class="btn btn-outline" onclick="scrollToSection('services')">See Services</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="section" aria-labelledby="services-title">
+    <div class="wrap">
+      <h2 id="services-title" class="reveal">Services built for real businesses</h2>
+      <p class="muted reveal" style="max-width:720px">Conversion-first layouts: clear service lists, transparent pricing cues, and fast paths to contact. Each card below is focused on one customer need.</p>
+
+      <div style="height:18px"></div>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="service-grid">
+            <div class="icon">P</div>
+            <div>
+              <h3>Plumbing Services</h3>
+              <p>Leaky pipes, clogged drains, water heater repair and installations. Flat-rate diagnostic fees with upfront estimates.</p>
+              <div style="display:flex;gap:8px;margin-top:12px">
+                <a href="#" class="btn btn-outline">Learn more</a>
+                <a href="#" class="btn btn-primary" onclick="openContact()">Request Job</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="service-grid">
+            <div class="icon">E</div>
+            <div>
+              <h3>Electrical & Lighting</h3>
+              <p>Fault-finding, outlet installs, lighting upgrades, breaker replacement. Certified electricians with clean invoicing.</p>
+              <div style="display:flex;gap:8px;margin-top:12px">
+                <a href="#" class="btn btn-outline">Learn more</a>
+                <a href="#" class="btn btn-primary" onclick="openContact()">Schedule</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="service-grid">
+            <div class="icon">H</div>
+            <div>
+              <h3>HVAC & Climate</h3>
+              <p>A/C tune-ups, furnace inspections, smart thermostat install. Seasonal plans and maintenance reminders to reduce callbacks.</p>
+              <div style="display:flex;gap:8px;margin-top:12px">
+                <a href="#" class="btn btn-outline">Learn more</a>
+                <a href="#" class="btn btn-primary" onclick="openContact()">Plan Service</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="service-grid">
+            <div class="icon">R</div>
+            <div>
+              <h3>Repairs & Maintenance</h3>
+              <p>General maintenance, carpentry fixes, and preventive checks. Bundled discounts for repeat business customers.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="service-grid">
+            <div class="icon">I</div>
+            <div>
+              <h3>Installations</h3>
+              <p>Appliance hookups, fixture installs, and upgrades completed to code with warranty paperwork included.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="service-grid">
+            <div class="icon">E</div>
+            <div>
+              <h3>Emergency Response</h3>
+              <p>Rapid dispatch, online booking, and clear arrival windows. Transparent emergency fee shown before booking.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why choose us -->
+  <section id="why" class="section" aria-labelledby="why-title">
+    <div class="wrap">
+      <div class="why reveal">
+        <div>
+          <h2 id="why-title">Why choose ReliablePro</h2>
+          <p class="muted">We design the service experience to convert: clear benefits, trust markers, and simple ways to buy. Below are the operational promises that matter to owners and decision-makers.</p>
+
+          <div class="bullets" style="margin-top:18px">
+            <div class="bullet reveal">
+              <div class="dot">1</div>
+              <div>
+                <strong>Transparent pricing</strong>
+                <div class="muted">No hidden fees — estimates delivered before work begins.</div>
+              </div>
+            </div>
+
+            <div class="bullet reveal" style="transition-delay:.06s">
+              <div class="dot">2</div>
+              <div>
+                <strong>Professional technicians</strong>
+                <div class="muted">Background-checked, uniformed, certified specialists.</div>
+              </div>
+            </div>
+
+            <div class="bullet reveal" style="transition-delay:.12s">
+              <div class="dot">3</div>
+              <div>
+                <strong>Accountability & warranty</strong>
+                <div class="muted">Work tracked with photos and a 90-day satisfaction warranty.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div>
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='520' viewBox='0 0 800 520'><rect width='800' height='520' fill='%23eaf4ff'/><g transform='translate(36,36)'><rect width='320' height='220' rx='12' fill='%23fff' stroke='%23dfeaff'/><rect x='12' y='12' width='80' height='80' rx='8' fill='%230b5fff' opacity='0.12'/><rect x='110' y='12' width='160' height='16' rx='8' fill='%230b5fff' opacity='0.08'/><rect x='110' y='36' width='180' height='12' rx='6' fill='%230b5fff' opacity='0.06'/></g></svg>" alt="Technician illustration" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="section" aria-labelledby="testimonials-title">
+    <div class="wrap">
+      <h2 id="testimonials-title" class="reveal">Trusted by homeowners & managers</h2>
+      <p class="muted reveal" style="max-width:700px">Short reviews with real signals — time, price clarity, and outcome. These showcase how social proof is presented for conversions.</p>
+
+      <div style="height:18px"></div>
+      <div class="testimonials reveal">
+        <div class="slider" aria-live="polite">
+          <div class="slides" id="slides">
+            <div class="review">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:46px;height:46px;border-radius:10px;background:#0b5fff;color:#fff;display:grid;place-items:center;font-weight:800">J</div>
+                <div>
+                  <strong>Jordan M.</strong>
+                  <div class="muted" style="font-size:13px">Chicago, IL • Verified customer</div>
+                </div>
+              </div>
+              <p style="margin-top:10px">Quick arrival, upfront price, fixed my water heater same day. Technician left everything clean — would recommend.</p>
+              <div class="rating">★★★★★</div>
+            </div>
+
+            <div class="review">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:46px;height:46px;border-radius:10px;background:#06b6a4;color:#fff;display:grid;place-items:center;font-weight:800">S</div>
+                <div>
+                  <strong>Sara L.</strong>
+                  <div class="muted" style="font-size:13px">Naperville, IL</div>
+                </div>
+              </div>
+              <p style="margin-top:10px">Great communication and clear invoice. Saved us from a costly emergency — priced fairly and professional.</p>
+              <div class="rating">★★★★★</div>
+            </div>
+
+            <div class="review">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:46px;height:46px;border-radius:10px;background:#ff7b00;color:#fff;display:grid;place-items:center;font-weight:800">R</div>
+                <div>
+                  <strong>Ravi P.</strong>
+                  <div class="muted" style="font-size:13px">Business account</div>
+                </div>
+              </div>
+              <p style="margin-top:10px">We use them for our store's maintenance. Reliable scheduling and tidy crews — they handle recurring jobs well.</p>
+              <div class="rating">★★★★★</div>
+            </div>
+          </div>
+
+          <div class="slider-controls">
+            <button class="btn" onclick="prevSlide()" aria-label="Previous review">Prev</button>
+            <button class="btn" onclick="nextSlide()" aria-label="Next review">Next</button>
+            <div style="flex:1"></div>
+            <div class="muted">Avg. rating: <strong>4.9</strong></div>
+          </div>
+        </div>
+
+        <aside style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+          <div style="background:linear-gradient(180deg,#fff,#f7fbff);padding:16px;border-radius:12px;box-shadow:var(--shadow)">
+            <strong>Average response:</strong>
+            <div class="muted">Under 30 minutes for urgent calls</div>
+          </div>
+
+          <div style="background:#fff;padding:16px;border-radius:12px;box-shadow:var(--shadow);text-align:left">
+            <strong>Service Area</strong>
+            <div class="muted">Chicago metro + 40 mi radius</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="wrap">
+    <div class="cta-banner reveal">
+      <div>
+        <h3>Ready to fix your problem? Get a free, no-commitment quote now.</h3>
+        <p style="margin-top:6px">Quick scheduling, clear pricing, and guarantee on all work.</p>
+      </div>
+      <div style="display:flex;gap:12px">
+        <button class="btn btn-outline" onclick="scrollToSection('testimonials')">See reviews</button>
+        <button class="btn btn-primary" onclick="openContact()">Request Service</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Footer -->
+  <section id="contact" class="section" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2 id="contact-title" class="reveal">Get in touch — request a quote</h2>
+          <p class="muted reveal">Fill out the form and we'll respond with an estimate and ETA. For emergencies call <a href="tel:+18005550123">+1 (800) 555-0123</a>.</p>
+
+          <div style="height:12px"></div>
+
+          <div style="display:grid;gap:12px">
+            <div class="card reveal">
+              <strong>Transparent Pricing Example</strong>
+              <p class="muted" style="margin-top:6px">Diagnostic: $49 • Hourly: $85 • Emergency: $129</p>
+            </div>
+
+            <div class="card reveal" style="display:flex;gap:12px;align-items:center;justify-content:space-between">
+              <div>
+                <strong>Service Hours</strong>
+                <div class="muted">Mon — Sun: 6am — 10pm (emergency dispatch 24/7)</div>
+              </div>
+              <div style="text-align:right">
+                <strong>Avg. response</strong>
+                <div class="muted">~30 minutes</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <form id="quoteForm" class="reveal" onsubmit="submitForm(event)" aria-label="Request quote form">
+          <div style="display:flex;gap:8px;margin-bottom:8px">
+            <input class="input" required placeholder="Full name" name="name" />
+            <input class="input" required placeholder="Phone or email" name="contact" />
+          </div>
+          <div style="margin-bottom:8px">
+            <input class="input" placeholder="Address (optional)" name="address" />
+          </div>
+          <div style="margin-bottom:8px">
+            <select class="input" name="service" required>
+              <option value="">Select a service</option>
+              <option>Plumbing — repair</option>
+              <option>Electrical — repair</option>
+              <option>HVAC — maintenance</option>
+              <option>Installation / Other</option>
+            </select>
+          </div>
+          <div style="margin-bottom:8px">
+            <textarea class="input" rows="4" name="notes" placeholder="Describe the issue (optional)"></textarea>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn btn-primary" type="submit">Request Quote</button>
+            <button class="btn btn-outline" type="button" onclick="openContact()">Call: +1 (800) 555-0123</button>
+            <div style="flex:1"></div>
+            <div class="muted" style="font-size:12px">We reply within one business hour.</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="wrap footer" role="contentinfo">
+    <div>
+      <div style="font-weight:800">ReliablePro Services</div>
+      <div class="muted">1234 Service Lane, Chicago, IL</div>
+      <div class="muted">© <span id="year"></span> ReliablePro — Demo</div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center">
+      <a href="#" class="muted">Privacy</a>
+      <a href="#" class="muted">Terms</a>
+      <div class="muted">Follow us:</div>
+      <div style="display:flex;gap:8px">
+        <a href="#" class="muted">FB</a>
+        <a href="#" class="muted">IG</a>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<!-- Modal / lightweight inline "contact open" -->
+<div id="overlay" style="display:none;position:fixed;inset:0;background:rgba(6,11,30,0.4);z-index:120;align-items:center;justify-content:center;padding:20px">
+  <div style="background:white;padding:20px;border-radius:12px;max-width:540px;width:100%;box-shadow:0 24px 80px rgba(11,15,30,0.2)">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <strong>Request Service</strong>
+      <button onclick="closeOverlay()" style="border:0;background:transparent;font-weight:700;cursor:pointer">✕</button>
+    </div>
+    <p class="muted" style="margin-top:8px">Quick estimate form — or call <a href="tel:+18005550123">+1 (800) 555-0123</a></p>
+    <form id="miniForm" onsubmit="submitMiniForm(event)" style="display:grid;gap:8px;margin-top:8px">
+      <input class="input" name="mname" placeholder="Full name" required />
+      <input class="input" name="mcontact" placeholder="Phone or email" required />
+      <select class="input" name="mservice" required>
+        <option value="">Select service</option>
+        <option>Plumbing — repair</option>
+        <option>Electrical — repair</option>
+        <option>HVAC — maintenance</option>
+        <option>Installation / Other</option>
+      </select>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button type="button" onclick="closeOverlay()" class="btn btn-outline">Cancel</button>
+        <button type="submit" class="btn btn-primary">Request</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // small helpers
+  const wrap = document.querySelector('.wrap');
+
+  // current year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // mobile nav toggle
+  const mToggle = document.querySelector('.mobile-toggle');
+  const mNav = document.getElementById('mobile-nav');
+  mToggle.addEventListener('click', () => {
+    const open = mNav.classList.toggle('open');
+    mToggle.setAttribute('aria-expanded', String(open));
+    mNav.setAttribute('aria-hidden', String(!open));
+  });
+
+  // smooth scroll helper
+  function scrollToSection(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  // contact overlay
+  const overlay = document.getElementById('overlay');
+  function openContact(){
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeOverlay(){
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  // form handlers (mock)
+  function submitForm(e){
+    e.preventDefault();
+    alert('Thanks — request received. (Demo form — no real submission)');
+    e.target.reset();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  function submitMiniForm(e){
+    e.preventDefault();
+    alert('Quick request received. We will contact you shortly. (Demo)');
+    closeOverlay();
+  }
+
+  // Intersection Observer for reveals
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        entry.target.classList.remove('reveal');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.12});
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Hero "parallax" subtle movement on scroll
+  const heroFigure = document.getElementById('hero-figure');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    if(heroFigure){
+      heroFigure.style.transform = `translateY(${Math.max(-16, -scrolled * 0.02)}px)`;
+      // move pseudo bg slightly (via style)
+      heroFigure.style.opacity = 1 - Math.min(0.25, scrolled/1200);
+    }
+  }, {passive:true});
+
+  // Testimonial slider
+  const slides = document.getElementById('slides');
+  let idx = 0;
+  const max = slides.children.length;
+  function updateSlider(){
+    slides.style.transform = `translateX(-${idx * (slides.children[0].offsetWidth + 12)}px)`;
+  }
+  function nextSlide(){
+    idx = (idx + 1) % max;
+    updateSlider();
+  }
+  function prevSlide(){
+    idx = (idx - 1 + max) % max;
+    updateSlider();
+  }
+  // handle resize to recalc translation
+  window.addEventListener('resize', () => { updateSlider(); });
+
+  // auto-advance every 5s
+  let auto = setInterval(nextSlide, 5000);
+  // pause on hover
+  slides.parentElement.addEventListener('mouseenter', () => clearInterval(auto));
+  slides.parentElement.addEventListener('mouseleave', () => auto = setInterval(nextSlide, 5000));
+
+  // keyboard accessibility - close overlay with escape
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){
+      closeOverlay();
+      mNav.classList.remove('open');
+      mToggle.setAttribute('aria-expanded','false');
+    }
+  });
+
+  // ensure Back button anchors are keyboard friendly
+  document.querySelectorAll('.back-btn').forEach(btn => {
+    btn.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        // default is # so just simulate click
+        window.history.back();
+      }
+    });
+  });
+
+  // initial run for slides position
+  setTimeout(updateSlider, 200);
+</script>
+
+</body>
+</html>
